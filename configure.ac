@@ -14,7 +14,7 @@ AC_CONFIG_SRCDIR([./source/main.c])
 
 # Condifguration header for the project
 # NOTE: Haven't solved the issue with config.h file yet!
-AC_CONFIG_HEADERS([./include/config.h])
+# AC_CONFIG_HEADERS([./include/config.h])
 
 # Auxiliary files directory
 AC_CONFIG_AUX_DIR([./aux])

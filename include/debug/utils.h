@@ -2,8 +2,8 @@
 /**
  * @file utils.h
  *
- * @copyright This file is a part of the project yarac and is distributed under MIT license that
- * should have been included with the project. If not, see https://choosealicense.com/licenses/mit/
+ * @copyright This file is a part of the project yarac and is distributed under GNU GPLv3 license
+ * that should have been included with the project.
  *
  * @author jorisb
  *
