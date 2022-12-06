@@ -9,7 +9,8 @@ AC_PREREQ([2.71])
 AC_CONFIG_SRCDIR([./source/main.c])
 
 # Tests directory (with sanity check file)
-AC_CONFIG_TESTDIR([./tests/test.c])
+# NOTE: not using autotools for tests for now!
+# AC_CONFIG_TESTDIR([./tests/test.c])
 
 # Condifguration header for the project
 # NOTE: Haven't solved the issue with config.h file yet!
