@@ -1,35 +1,35 @@
 name: Makefile CI
 
 on:
-	push:
-		branches: [ "main" ]
-	pull_request:
-		branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-	ubuntu-build:
-		runs-on: ubuntu-latest
+  ubuntu-build:
+    runs-on: ubuntu-latest
 
-		steps:
-		- uses: actions/checkout@v3
+    steps:
+    - uses: actions/checkout@v3
 
-		- name: Run autogen.sh
-			run: ./autogen.sh
+    - name: Run autogen.sh
+      run: ./autogen.sh
 
-		- name: Make build directory
-			run: mkdir ./build
+    - name: Make build directory
+      run: mkdir ./build
 
-		- name: Go to build directory
-			run: cd ./build
+    - name: Go to build directory
+      run: cd ./build
 
-		- name: Run configure
-			run: ./../configure
+    - name: Run configure
+      run: ./../configure
 
-		- name: Install dependencies
-			run: make
+    - name: Install dependencies
+      run: make
 
-		- name: Run check
-			run: make check
+    - name: Run check
+      run: make check
 
-		- name: Run distcheck
-			run: make distcheck
+    - name: Run distcheck
+      run: make distcheck
