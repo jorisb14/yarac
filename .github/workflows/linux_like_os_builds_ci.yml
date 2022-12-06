@@ -1,5 +1,5 @@
 
-name: Cross-Platform Builds CI
+name: Linux-like OS Builds CI
 
 on:
   push:
