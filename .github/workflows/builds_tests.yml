@@ -19,17 +19,10 @@ jobs:
     - name: Make build directory
       run: mkdir ./build
 
-    - name: Go to build directory
-      run: cd ./build
-
-    - name: Run configure
-      run: ./../configure
-
-    - name: Install dependencies
-      run: make
-
-    - name: Run check
-      run: make check
-
-    - name: Run distcheck
-      run: make distcheck
+    - name: Run configure and make
+      run: |
+        cd ./build
+        ./../configure
+        make
+        make check
+        make distcheck
