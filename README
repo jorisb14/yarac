@@ -1,0 +1,59 @@
+
+# yarac - the yaralang compiler
+
+
+## Build
+`Debug build:`
+```console
+> cd <yarac-root>
+> ./autogen.sh # Generates 'configure' and make files
+> mkdir ./build && cd ./build
+> ./../configure # Sets debug variables and settings by default
+> make # Builds
+```
+
+`Release build:`
+```console
+> cd <yarac-root>
+> ./autogen.sh # Generates 'configure' and make files
+> mkdir ./build && cd ./build
+> ./../configure CFLAGS="-O3" # Sets up the environment for the make
+> make # Builds
+```
+
+
+## Use
+Instructions to use the compiler.
+
+```console
+  ___    ___ ________  ________  ________  ________      
+ |\  \  /  /|\   __  \|\   __  \|\   __  \|\   ____\     
+ \ \  \/  / | \  \|\  \ \  \|\  \ \  \|\  \ \  \___|     
+  \ \    / / \ \   __  \ \   _  _\ \   __  \ \  \        
+   \/  /  /   \ \  \ \  \ \  \\  \\ \  \ \  \ \  \____   
+ __/  / /      \ \__\ \__\ \__\\ _\\ \__\ \__\ \_______\ 
+|\___/ /        \|__|\|__|\|__|\|__|\|__|\|__|\|_______| 
+\|___|/                                                  
+
+Usage: ./bin/linux/debug/yarac [Options] sources...
+Options:
+    [ --include-dir        | -id ] <path>             Add include directory for the target.
+    [ --output-format      | -of ] <nasm|o>           Set output format to either nasm assembly or .o files. Defaults to nasm assembly.
+    [ --artifacts-dir      | -ad ] <path>             Set directory for the artifacts.
+    [ --optimizations-mode | -om ] <mode>             Set optimizations mode to either none, size, speed, or all. Defaults to none.
+    [ --help               | -h  ]                    Print usage message.
+
+```
+
+
+## Tests
+`Instructions to test the compiler.`<br>
+`Not implemented yet`
+
+
+## Development
+The workflow of the compiler:
+
+
+## Features
+ - The yarac does not support hex and octal literals

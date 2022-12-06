@@ -1,0 +1,19 @@
+
+{
+	"files.associations": {
+		"stdio.h": "c",
+		"assert.h": "c",
+		"cmath": "c",
+		"types.h": "c",
+		"linker.h": "c",
+		"compare": "c",
+		"type_traits": "c",
+		"stdlib.h": "c",
+		"utils.h": "c",
+		"limits": "c",
+		"new": "c",
+		"typeinfo": "cpp",
+		"*.uth": "c"
+	},
+	"cmake.sourceDirectory": "${workspaceFolder}/yarac"
+}

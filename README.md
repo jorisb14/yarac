@@ -1,2 +1,0 @@
-# yarac
-The yaralang compiler

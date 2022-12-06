@@ -1,0 +1,122 @@
+
+{
+	"import": {
+		"prefix": "import",
+		"description": "Yaralang import snippet",
+		"body": [
+			"",
+			"import $name end",
+			""
+		]
+	},
+	"from-import": {
+		"prefix": "from-import",
+		"description": "Yaralang from-import snippet",
+		"body": [
+			"",
+			"from $file import",
+			"\t$items",
+			"end",
+			""
+		]
+	},
+	"module": {
+		"prefix": "module",
+		"description": "Yaralang module snippet",
+		"body": [
+			"",
+			"module $name do",
+			"\t# body",
+			"end",
+			""
+		]
+	},
+	"procedure": {
+		"prefix": "procedure",
+		"description": "Yaralang procedure snippet",
+		"body": [
+			"",
+			"procedure $name in $Tin out $Tout do",
+			"\t# body",
+			"end",
+			""
+		]
+	},
+	"inline-procedure": {
+		"prefix": "inline-procedure",
+		"description": "Yaralang inlined procedure snippet",
+		"body": [
+			"",
+			"inline procedure $name in $Tin out $Tout do",
+			"\t# body",
+			"end",
+			""
+		]
+	},
+	"export-procedure": {
+		"prefix": "export-procedure",
+		"description": "Yaralang exported procedure snippet",
+		"body": [
+			"",
+			"export procedure $name in $Tin out $Tout do",
+			"\t# body",
+			"end",
+			""
+		]
+	},
+	"export-inline-procedure": {
+		"prefix": "export-inline-procedure",
+		"description": "Yaralang exported and inlined procedure snippet",
+		"body": [
+			"",
+			"export inline procedure $name in $Tin out $Tout do",
+			"\t# body",
+			"end",
+			""
+		]
+	},
+	"main": {
+		"prefix": "main",
+		"description": "Yaralang main snippet",
+		"body": [
+			"",
+			"export procedure main in i64 p64 out i64  do",
+			"\t# body",
+			"end",
+			""
+		]
+	},
+	"if": {
+		"prefix": "if",
+		"description": "Yaralang if snippet",
+		"body": [
+			"",
+			"if $condition do",
+			"\t# body",
+			"end",
+			""
+		]
+	},
+	"while": {
+		"prefix": "while",
+		"description": "Yaralang while snippet",
+		"body": [
+			"",
+			"while $condition do",
+			"\t# body",
+			"end",
+			""
+		]
+	},
+	"with": {
+		"prefix": "with",
+		"description": "Yaralang with snippet",
+		"body": [
+			"",
+			"with $names as $Ts do",
+			"\t# body",
+			"end",
+			""
+		]
+	}
+}

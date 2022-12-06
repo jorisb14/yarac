@@ -1,0 +1,168 @@
+
+/**
+ * @file literals.uth
+ *
+ * @copyright This file is a part of the project yarac and is distributed under MIT license that
+ * should have been included with the project. If not, see https://choosealicense.com/licenses/mit/
+ *
+ * @author jorib
+ *
+ * @date 2022-11-30
+ */
+
+#ifndef _LITERALS_UTH_
+#define _LITERALS_UTH_
+
+static unsigned long long UT_literalTokenKinds[] =
+{
+	TOKEN_KIND_LITERAL_I8,
+	TOKEN_KIND_LITERAL_I8,
+	TOKEN_KIND_LITERAL_I8,
+	TOKEN_KIND_LITERAL_I16,
+	TOKEN_KIND_LITERAL_I16,
+	TOKEN_KIND_LITERAL_I16,
+	TOKEN_KIND_LITERAL_I32,
+	TOKEN_KIND_LITERAL_I32,
+	TOKEN_KIND_LITERAL_I32,
+	TOKEN_KIND_LITERAL_I64,
+	TOKEN_KIND_LITERAL_I64,
+	TOKEN_KIND_LITERAL_I64,
+
+	TOKEN_KIND_LITERAL_U8,
+	TOKEN_KIND_LITERAL_U8,
+	TOKEN_KIND_LITERAL_U8,
+	TOKEN_KIND_LITERAL_U8,
+	TOKEN_KIND_LITERAL_U16,
+	TOKEN_KIND_LITERAL_U16,
+	TOKEN_KIND_LITERAL_U8,
+	TOKEN_KIND_LITERAL_U32,
+	TOKEN_KIND_LITERAL_U32,
+	TOKEN_KIND_LITERAL_U8,
+	TOKEN_KIND_LITERAL_U64,
+	TOKEN_KIND_LITERAL_U64,
+
+	TOKEN_KIND_LITERAL_F32,
+	TOKEN_KIND_LITERAL_F32,
+	TOKEN_KIND_LITERAL_F32,
+	TOKEN_KIND_LITERAL_F64,
+	TOKEN_KIND_LITERAL_F64,
+	TOKEN_KIND_LITERAL_F64,
+
+	TOKEN_KIND_LITERAL_P8,
+	TOKEN_KIND_LITERAL_P8,
+	TOKEN_KIND_LITERAL_P8,
+	TOKEN_KIND_LITERAL_P8,
+	TOKEN_KIND_LITERAL_P16,
+	TOKEN_KIND_LITERAL_P16,
+	TOKEN_KIND_LITERAL_P8,
+	TOKEN_KIND_LITERAL_P32,
+	TOKEN_KIND_LITERAL_P32,
+	TOKEN_KIND_LITERAL_P8,
+	TOKEN_KIND_LITERAL_P64,
+	TOKEN_KIND_LITERAL_P64,
+
+	TOKEN_KIND_LITERAL_STRING,
+	TOKEN_KIND_LITERAL_STRING,
+	TOKEN_KIND_LITERAL_STRING
+};
+
+UT_ADD_TEST(literals,
+{
+	signed char succeeded = 0;
+	struct Vector* tokens = NULL;
+	const char* source = SAMPLES_DIR"/literals.yara";
+
+	W_Vector_create((struct Vector** const)&tokens, 4, &succeeded,
+	{
+		succeeded = 0;
+		return 1;
+	},
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			"failed to create tokens vector!");
+		// succeeded = 0;
+		return 1;
+	},
+	{});
+
+	W_Lexer_lexFile(source, &tokens, &succeeded,
+	{
+		succeeded = 0;
+		return 1;
+	},
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION,
+			"failed to lex file: %s!",
+			source);
+		// succeeded = 0;
+		return 1;
+	},
+	{});
+
+	const unsigned long long tokensCount = tokens->count;
+	UT_ASSERT_TRUE(literals, tokensCount == (sizeof(UT_literalTokenKinds) / sizeof(unsigned long long)));
+
+	unsigned long long currentKind = 0;
+	for (unsigned long long index = 0; index < tokens->count; ++index)
+	{
+		struct Token* token = NULL;
+
+		W_Vector_getAt((struct Vector* const * const)&tokens, index, (void** const)&token, &succeeded,
+		{
+			succeeded = 0;
+			return 0;
+		},
+		{
+			// TODO: log!
+			// succeeded = 0;
+			return 1;
+		},
+		{});
+
+		UT_ASSERT_TRUE(literals, token->kind == UT_literalTokenKinds[currentKind++]);
+	}
+
+	for (unsigned long long index = 0; index < tokens->count; ++index)
+	{
+		struct Token* token = NULL;
+
+		W_Vector_getAt((struct Vector* const * const)&tokens, index, (void** const)&token, &succeeded,
+		{
+			succeeded = 0;
+			return 0;
+		},
+		{
+			// TODO: log!
+			// succeeded = 0;
+			return 1;
+		},
+		{});
+
+		W_Token_destroy((const struct Token* const * const)&token, &succeeded,
+		{
+			succeeded = 0;
+		},
+		{
+			W_Logger_log(LOG_KIND_ERROR, NO_LOCATION,
+				"failed to destroy a token!",
+				(const char*)source);
+			// succeeded = 0;
+		},
+		{});
+	}
+
+	W_Vector_destroy((const struct Vector* const * const)&tokens, &succeeded,
+	{
+		succeeded = 0;
+		return 1;
+	},
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			"failed to destroy vector container!");
+		// succeeded = 0;
+		return 1;
+	},
+	{});
+});
+
+#endif
