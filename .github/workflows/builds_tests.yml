@@ -2,68 +2,68 @@
 name: Cross-Platform Builds CI
 
 on:
-    push:
-        branches: [ "main" ]
-    pull_request:
-        branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-    ubuntu-build:
-        runs-on: ubuntu-latest
+  ubuntu-build:
+    runs-on: ubuntu-latest
 
-        steps:
-            - uses: actions/checkout@v3
+    steps:
+      - uses: actions/checkout@v3
 
-            - name: Run autogen.sh
-            run: ./autogen.sh
+      - name: Run autogen.sh
+        run: ./autogen.sh
 
-            - name: Make build directory
-            run: mkdir ./build
+      - name: Make build directory
+        run: mkdir ./build
 
-            - name: Run configure and make
-                run: |
-                    cd ./build
-                    ./../configure
-                    make
-                    make check
-                    make distcheck
+      - name: Run configure and make
+        run: |
+          cd ./build
+          ./../configure
+          make
+          make check
+          make distcheck
 
-    windows-build:
-        runs-on: windows-latest
+  windows-build:
+    runs-on: windows-latest
 
-        steps:
-            - uses: actions/checkout@v3
+    steps:
+      - uses: actions/checkout@v3
 
-            - name: Run autogen.sh
-            run: ./autogen.sh
+      - name: Run autogen.sh
+        run: ./autogen.sh
 
-            - name: Make build directory
-            run: mkdir ./build
+      - name: Make build directory
+        run: mkdir ./build
 
-            - name: Run configure and make
-                run: |
-                    cd ./build
-                    ./../configure
-                    make
-                    make check
-                    make distcheck
+      - name: Run configure and make
+        run: |
+          cd ./build
+          ./../configure
+          make
+          make check
+          make distcheck
 
-    macos-build:
-        runs-on: macos-latest
+  macos-build:
+    runs-on: macos-latest
 
-        steps:
-            - uses: actions/checkout@v3
+    steps:
+      - uses: actions/checkout@v3
 
-            - name: Run autogen.sh
-            run: ./autogen.sh
+      - name: Run autogen.sh
+        run: ./autogen.sh
 
-            - name: Make build directory
-            run: mkdir ./build
+      - name: Make build directory
+        run: mkdir ./build
 
-            - name: Run configure and make
-                run: |
-                    cd ./build
-                    ./../configure
-                    make
-                    make check
-                    make distcheck
+      - name: Run configure and make
+        run: |
+          cd ./build
+          ./../configure
+          make
+          make check
+          make distcheck
