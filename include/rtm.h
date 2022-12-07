@@ -29,7 +29,7 @@ signed char RTM_malloc(
 	{ \
 		if (!RTM_malloc((_inmacro_destination), (_inmacro_size), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function RTM_malloc(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -55,7 +55,7 @@ signed char RTM_realloc(
 	{ \
 		if (!RTM_realloc((_inmacro_destination), (_inmacro_size), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function RTM_realloc(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -80,7 +80,7 @@ signed char RTM_free(
 	{ \
 		if (!RTM_free((_inmacro_source), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function RTM_free(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \

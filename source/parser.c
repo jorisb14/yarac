@@ -32,31 +32,34 @@ signed char Parser_parseFrame(
 	const struct List* const * const tokens,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (frame == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `frame` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens`'s deref is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -98,7 +101,7 @@ static signed char Parser_tryParseBlocks(
 	{ \
 		if (!Parser_tryParseBlocks((_inmacro_blocks), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Parser_tryParseBlocks(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -123,7 +126,7 @@ static signed char Parser_tryParseOperationBlock(
 	{ \
 		if (!Parser_tryParseOperationBlock((_inmacro_block), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Parser_tryParseOperationBlock(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -148,7 +151,7 @@ static signed char Parser_tryParseIdentifierBlock(
 	{ \
 		if (!Parser_tryParseIdentifierBlock((_inmacro_block), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Parser_tryParseIdentifierBlock(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -173,7 +176,7 @@ static signed char Parser_tryParseIfBlock(
 	{ \
 		if (!Parser_tryParseIfBlock((_inmacro_block), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Parser_tryParseIfBlock(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -198,7 +201,7 @@ static signed char Parser_tryParseWhileBlock(
 	{ \
 		if (!Parser_tryParseWhileBlock((_inmacro_block), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Parser_tryParseWhileBlock(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -223,7 +226,7 @@ static signed char Parser_tryParseWithBlock(
 	{ \
 		if (!Parser_tryParseWithBlock((_inmacro_block), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Parser_tryParseWithBlock(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -248,7 +251,7 @@ static signed char Parser_tryParseProcedureBlock(
 	{ \
 		if (!Parser_tryParseProcedureBlock((_inmacro_block), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Parser_tryParseProcedureBlock(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -273,7 +276,7 @@ static signed char Parser_tryParseModuleBlock(
 	{ \
 		if (!Parser_tryParseModuleBlock((_inmacro_block), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Parser_tryParseModuleBlock(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -298,7 +301,7 @@ static signed char Parser_tryParseImportBlock(
 	{ \
 		if (!Parser_tryParseImportBlock((_inmacro_block), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Parser_tryParseImportBlock(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -322,21 +325,21 @@ signed char Parser_validateFrame(
 {
 	if (frame == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `frame` is invalid (null)!");
 		return 0;
 	}
 
 	if (*frame == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `frame`'s deref is invalid (null)!");
 		return 0;
 	}
 
 	if (validated == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `validated` is invalid (null)!");
 		return 0;
 	}
@@ -361,21 +364,21 @@ signed char Parser_parseFrame(
 {
 	if (tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens` is invalid (null)!");
 		return 0;
 	}
 
 	if (frame == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `frame` is invalid (null)!");
 		return 0;
 	}
 
 	if (succeeded == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `succeeded` is invalid (null)!");
 		return 0;
 	}
@@ -390,7 +393,7 @@ signed char Parser_parseFrame(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to create a frame!");
 		// *succeeded = 0;
 		return 1;
@@ -403,7 +406,7 @@ signed char Parser_parseFrame(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_ERROR, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_ERROR, INTERNAL_LOCATION, "%s",
 			"failed to parse blocks!");
 		// *succeeded = 0;
 		return 1;
@@ -420,21 +423,21 @@ static signed char Parser_tryParseBlocks(
 {
 	if (_parser_current == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _parser_current is invalid (null)!");
 		return 0;
 	}
 
 	if (blocks == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `blocks` is invalid (null)!");
 		return 0;
 	}
 
 	if (succeeded == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `succeeded` is invalid (null)!");
 		return 0;
 	}
@@ -850,28 +853,28 @@ static signed char Parser_tryParseOperationBlock(
 {
 	if (_parser_current == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _parser_current is invalid (null)!");
 		return 0;
 	}
 
 	if (block == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `block` is invalid (null)!");
 		return 0;
 	}
 
 	if (*block == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `block`'s deref is invalid (null)!");
 		return 0;
 	}
 
 	if (succeeded == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `succeeded` is invalid (null)!");
 		return 0;
 	}
@@ -936,28 +939,28 @@ static signed char Parser_tryParseIdentifierBlock(
 {
 	if (_parser_current == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _parser_current is invalid (null)!");
 		return 0;
 	}
 
 	if (block == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `block` is invalid (null)!");
 		return 0;
 	}
 
 	if (*block == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `block`'s deref is invalid (null)!");
 		return 0;
 	}
 
 	if (succeeded == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `succeeded` is invalid (null)!");
 		return 0;
 	}
@@ -996,28 +999,28 @@ static signed char Parser_tryParseIfBlock(
 {
 	if (_parser_current == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _parser_current is invalid (null)!");
 		return 0;
 	}
 
 	if (block == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `block` is invalid (null)!");
 		return 0;
 	}
 
 	if (*block == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `block`'s deref is invalid (null)!");
 		return 0;
 	}
 
 	if (succeeded == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `succeeded` is invalid (null)!");
 		return 0;
 	}
@@ -1270,28 +1273,28 @@ static signed char Parser_tryParseWhileBlock(
 {
 	if (_parser_current == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _parser_current is invalid (null)!");
 		return 0;
 	}
 
 	if (block == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `block` is invalid (null)!");
 		return 0;
 	}
 
 	if (*block == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `block`'s deref is invalid (null)!");
 		return 0;
 	}
 
 	if (succeeded == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `succeeded` is invalid (null)!");
 		return 0;
 	}
@@ -1544,28 +1547,28 @@ static signed char Parser_tryParseWithBlock(
 {
 	if (_parser_current == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _parser_current is invalid (null)!");
 		return 0;
 	}
 
 	if (block == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `block` is invalid (null)!");
 		return 0;
 	}
 
 	if (*block == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `block`'s deref is invalid (null)!");
 		return 0;
 	}
 
 	if (succeeded == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `succeeded` is invalid (null)!");
 		return 0;
 	}
@@ -1757,28 +1760,28 @@ static signed char Parser_tryParseProcedureBlock(
 {
 	if (_parser_current == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _parser_current is invalid (null)!");
 		return 0;
 	}
 
 	if (block == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `block` is invalid (null)!");
 		return 0;
 	}
 
 	if (*block == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `block`'s deref is invalid (null)!");
 		return 0;
 	}
 
 	if (succeeded == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `succeeded` is invalid (null)!");
 		return 0;
 	}
@@ -2109,28 +2112,28 @@ static signed char Parser_tryParseModuleBlock(
 {
 	if (_parser_current == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _parser_current is invalid (null)!");
 		return 0;
 	}
 
 	if (block == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `block` is invalid (null)!");
 		return 0;
 	}
 
 	if (*block == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `block`'s deref is invalid (null)!");
 		return 0;
 	}
 
 	if (succeeded == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `succeeded` is invalid (null)!");
 		return 0;
 	}
@@ -2276,28 +2279,28 @@ static signed char Parser_tryParseImportBlock(
 {
 	if (_parser_current == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _parser_current is invalid (null)!");
 		return 0;
 	}
 
 	if (block == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `block` is invalid (null)!");
 		return 0;
 	}
 
 	if (*block == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `block`'s deref is invalid (null)!");
 		return 0;
 	}
 
 	if (succeeded == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `succeeded` is invalid (null)!");
 		return 0;
 	}

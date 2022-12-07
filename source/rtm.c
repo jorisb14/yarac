@@ -14,6 +14,8 @@
 #include <rtm.h>
 #include <logger.h>
 
+#include <stdlib.h>
+
 /**
  * @addtogroup rtm
  * 
@@ -25,17 +27,18 @@ signed char RTM_malloc(
 	const unsigned long long size,
 	signed char* const succeeded)
 {
-	if (destination == NULL)
+	if (succeeded == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `destination` is invalid (null)!");
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
 		return 0;
 	}
 
-	if (succeeded == NULL)
+	if (destination == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `destination` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -43,7 +46,7 @@ signed char RTM_malloc(
 
 	if (*destination == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"function malloc(...) returned with an error! Failed to allocate memory!");
 		*succeeded = 0;
 		return 1;
@@ -58,17 +61,18 @@ signed char RTM_realloc(
 	const unsigned long long size,
 	signed char* const succeeded)
 {
-	if (destination == NULL)
+	if (succeeded == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `destination` is invalid (null)!");
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
 		return 0;
 	}
 
-	if (succeeded == NULL)
+	if (destination == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `destination` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -76,7 +80,7 @@ signed char RTM_realloc(
 
 	if (*destination == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"function realloc(...) returned with an error! Failed to allocate memory!");
 		*succeeded = 0;
 		return 1;
@@ -90,17 +94,18 @@ signed char RTM_free(
 	const void* const * const source,
 	signed char* const succeeded)
 {
-	if (source == NULL)
+	if (succeeded == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `source` is invalid (null)!");
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
 		return 0;
 	}
 
-	if (succeeded == NULL)
+	if (source == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `source` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 

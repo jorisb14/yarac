@@ -70,7 +70,7 @@ static signed char Lexer_getLine(
 	{ \
 		if (!Lexer_getLine((_inmacro_length), (_inmacro_file), (_inmacro_reachedEOF), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Lexer_getLine(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -109,7 +109,7 @@ static signed char Lexer_moveBy(
 	{ \
 		if (!Lexer_moveBy((_inmacro_amount), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Lexer_moveBy(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -150,7 +150,7 @@ static signed char Lexer_isWhitespaceChar(
 	{ \
 		if (!Lexer_isWhitespaceChar((_inmacro_ch), (_inmacro_is), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Lexer_isWhitespaceChar(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -191,7 +191,7 @@ static signed char Lexer_isIdentifierChar(
 	{ \
 		if (!Lexer_isIdentifierChar((_inmacro_ch), (_inmacro_is), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Lexer_isIdentifierChar(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -228,7 +228,7 @@ static signed char Lexer_skipWhitespaces(
 	{ \
 		if (!Lexer_skipWhitespaces((_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Lexer_skipWhitespaces(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -266,7 +266,7 @@ static signed char Lexer_tryParseKeyword(
 	{ \
 		if (!Lexer_tryParseKeyword((_inmacro_tokens), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Lexer_tryParseKeyword(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -305,7 +305,7 @@ static signed char Lexer_tryParseIntrinsic(
 	{ \
 		if (!Lexer_tryParseIntrinsic((_inmacro_tokens), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Lexer_tryParseIntrinsic(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -344,7 +344,7 @@ static signed char Lexer_tryParseDecorator(
 	{ \
 		if (!Lexer_tryParseDecorator((_inmacro_tokens), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Lexer_tryParseDecorator(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -383,7 +383,7 @@ static signed char Lexer_tryParseIdentifier(
 	{ \
 		if (!Lexer_tryParseIdentifier((_inmacro_tokens), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Lexer_tryParseIdentifier(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -422,7 +422,7 @@ static signed char Lexer_tryParseStringLiteral(
 	{ \
 		if (!Lexer_tryParseStringLiteral((_inmacro_tokens), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Lexer_tryParseStringLiteral(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -461,7 +461,7 @@ static signed char Lexer_tryParseSignedIntegerLiteral(
 	{ \
 		if (!Lexer_tryParseSignedIntegerLiteral((_inmacro_tokens), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Lexer_tryParseSignedIntegerLiteral(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -500,7 +500,7 @@ static signed char Lexer_tryParseUnsignedIntegerLiteral(
 	{ \
 		if (!Lexer_tryParseUnsignedIntegerLiteral((_inmacro_tokens), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Lexer_tryParseUnsignedIntegerLiteral(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -539,7 +539,7 @@ static signed char Lexer_tryParseFloatingPointLiteral(
 	{ \
 		if (!Lexer_tryParseFloatingPointLiteral((_inmacro_tokens), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Lexer_tryParseFloatingPointLiteral(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -578,7 +578,7 @@ static signed char Lexer_tryParsePointerLiteral(
 	{ \
 		if (!Lexer_tryParsePointerLiteral((_inmacro_tokens), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Lexer_tryParsePointerLiteral(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -617,7 +617,7 @@ static signed char Lexer_tryParseInvalid(
 	{ \
 		if (!Lexer_tryParseInvalid((_inmacro_tokens), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Lexer_tryParseInvalid(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -655,7 +655,7 @@ static signed char Lexer_lexLine(
 	{ \
 		if (!Lexer_lexLine((_inmacro_tokens), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Lexer_lexLine(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -677,38 +677,42 @@ signed char Lexer_lexFile(
 	struct Vector* const * const tokens,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (filePath == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `filePath` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (strlen(filePath) <= 0)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `filePath` was empty!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens`'s deref is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -729,7 +733,7 @@ signed char Lexer_lexFile(
 
 	if (file == NULL)
 	{
-		W_Logger_log(LOG_KIND_ERROR, NO_LOCATION,
+		W_Logger_log(LOG_KIND_ERROR, INTERNAL_LOCATION,
 			"failed to open source file with path `%s`!",
 			filePath);
 		*succeeded = 0;
@@ -748,7 +752,7 @@ signed char Lexer_lexFile(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to read a line from file!");
 			// *succeeded = 0;
 			return 1;
@@ -779,7 +783,7 @@ signed char Lexer_lexFile(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to lex line!");
 			// *succeeded = 0;
 			return 1;
@@ -798,7 +802,7 @@ signed char Lexer_lexFile(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to deallocate lexer's read line buffer!");
 			// *succeeded = 0;
 			return 1;
@@ -816,46 +820,51 @@ signed char Lexer_validateTokens(
 	const struct Vector* const * const tokens,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (filePath == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `filePath` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (strlen(filePath) <= 0)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `filePath` was empty!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens`'s deref is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if ((*tokens)->count <= 0)
 	{
-		W_Logger_log(LOG_KIND_ERROR, NO_LOCATION,
+		W_Logger_log(LOG_KIND_ERROR, INTERNAL_LOCATION,
 			"provided function parameter `tokens` is empty in file `%s`, whch is forbidden!",
 			filePath);
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -871,7 +880,7 @@ signed char Lexer_validateTokens(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to get an element from vector!");
 			// *succeeded = 0;
 			return 1;
@@ -896,31 +905,33 @@ static signed char Lexer_getLine(
 	signed char* const reachedEOF,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (length == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `length` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (file == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `file` is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	*succeeded = 0;
+
 	*reachedEOF = 0;
 	*length = 0;
-
 	char c = 0;
 
 	do
@@ -956,7 +967,7 @@ static signed char Lexer_getLine(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to reallocate memory for the new line!");
 		// *succeeded = 0;
 		return 1;
@@ -974,33 +985,38 @@ static signed char Lexer_moveBy(
 	const signed long long amount,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (_lexer_begin == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_begin is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_current == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_current is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_end == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_end is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
-		return 0;
-	}
+	*succeeded = 0;
 
 	for (signed long long i = 0; i < amount && _lexer_current < _lexer_end; ++i)
 	{
@@ -1019,15 +1035,16 @@ static signed char Lexer_isWhitespaceChar(
 {
 	if (succeeded == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `succeeded` is invalid (null)!");
 		return 0;
 	}
 
-	if (succeeded == NULL)
+	if (is == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `is` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -1043,15 +1060,16 @@ static signed char Lexer_isIdentifierChar(
 {
 	if (succeeded == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `succeeded` is invalid (null)!");
 		return 0;
 	}
 
-	if (succeeded == NULL)
+	if (is == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `is` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -1063,31 +1081,34 @@ static signed char Lexer_isIdentifierChar(
 static signed char Lexer_skipWhitespaces(
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (_lexer_begin == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_begin is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_current == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_current is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_end == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_end is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -1103,7 +1124,7 @@ static signed char Lexer_skipWhitespaces(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to check if char is a whitespace!");
 			// *succeeded = 0;
 			return 1;
@@ -1118,7 +1139,7 @@ static signed char Lexer_skipWhitespaces(
 				return 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"failed to move the lexer's pointer!");
 				// *succeeded = 0;
 				return 1;
@@ -1139,45 +1160,50 @@ static signed char Lexer_tryParseKeyword(
 	struct Vector* const * const tokens,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (_lexer_begin == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_begin is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_current == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_current is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_end == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_end is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens`'s deref is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -1240,7 +1266,7 @@ static signed char Lexer_tryParseKeyword(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to check if char is a whitespace!");
 			// *succeeded = 0;
 			return 1;
@@ -1283,7 +1309,7 @@ static signed char Lexer_tryParseKeyword(
 				return 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"failed to add token to tokens list!");
 				// *succeeded = 0;
 				return 1;
@@ -1303,7 +1329,7 @@ static signed char Lexer_tryParseKeyword(
 				return 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"failed to push new memory block to tokens's source buffer!");
 
 				// NOTES:
@@ -1340,7 +1366,7 @@ static signed char Lexer_tryParseKeyword(
 				return 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"failed to move the lexer's pointer!");
 
 				// NOTES:
@@ -1374,7 +1400,7 @@ static signed char Lexer_tryParseKeyword(
 				return 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"failed to add token to tokens list!");
 
 				// NOTES:
@@ -1410,45 +1436,50 @@ static signed char Lexer_tryParseIntrinsic(
 	struct Vector* const * const tokens,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (_lexer_begin == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_begin is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_current == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_current is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_end == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_end is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens`'s deref is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -1512,7 +1543,7 @@ static signed char Lexer_tryParseIntrinsic(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to check if char is a whitespace!");
 			// *succeeded = 0;
 			return 1;
@@ -1555,7 +1586,7 @@ static signed char Lexer_tryParseIntrinsic(
 				return 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"failed to add token to tokens list!");
 				// *succeeded = 0;
 				return 1;
@@ -1575,7 +1606,7 @@ static signed char Lexer_tryParseIntrinsic(
 				return 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"failed to push new memory block to tokens's source buffer!");
 
 				// NOTES:
@@ -1612,7 +1643,7 @@ static signed char Lexer_tryParseIntrinsic(
 				return 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"failed to move the lexer's pointer!");
 
 				// NOTES:
@@ -1646,7 +1677,7 @@ static signed char Lexer_tryParseIntrinsic(
 				return 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"failed to add token to tokens list!");
 
 				// NOTES:
@@ -1682,45 +1713,50 @@ static signed char Lexer_tryParseDecorator(
 	struct Vector* const * const tokens,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (_lexer_begin == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_begin is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_current == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_current is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_end == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_end is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens`'s deref is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -1750,7 +1786,7 @@ static signed char Lexer_tryParseDecorator(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to check if char is a whitespace!");
 			// *succeeded = 0;
 			return 1;
@@ -1793,7 +1829,7 @@ static signed char Lexer_tryParseDecorator(
 				return 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"failed to add token to tokens list!");
 				// *succeeded = 0;
 				return 1;
@@ -1813,7 +1849,7 @@ static signed char Lexer_tryParseDecorator(
 				return 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"failed to push new memory block to tokens's source buffer!");
 
 				// NOTES:
@@ -1850,7 +1886,7 @@ static signed char Lexer_tryParseDecorator(
 				return 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"failed to move the lexer's pointer!");
 
 				// NOTES:
@@ -1884,7 +1920,7 @@ static signed char Lexer_tryParseDecorator(
 				return 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"failed to add token to tokens list!");
 
 				// NOTES:
@@ -1920,45 +1956,50 @@ static signed char Lexer_tryParseIdentifier(
 	struct Vector* const * const tokens,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (_lexer_begin == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_begin is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_current == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_current is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_end == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_end is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens`'s deref is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -1973,7 +2014,7 @@ static signed char Lexer_tryParseIdentifier(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided char was not an identifier char!");
 		// *succeeded = 0;
 		return 1;
@@ -1999,7 +2040,7 @@ static signed char Lexer_tryParseIdentifier(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"provided char was not an identifier char!");
 			// *succeeded = 0;
 			return 1;
@@ -2024,7 +2065,7 @@ static signed char Lexer_tryParseIdentifier(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to check if char is a whitespace!");
 			// *succeeded = 0;
 			return 1;
@@ -2068,7 +2109,7 @@ static signed char Lexer_tryParseIdentifier(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to add token to tokens list!");
 			// *succeeded = 0;
 			return 1;
@@ -2083,7 +2124,7 @@ static signed char Lexer_tryParseIdentifier(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to add token to tokens list!");
 			// *succeeded = 0;
 			return 1;
@@ -2104,7 +2145,7 @@ static signed char Lexer_tryParseIdentifier(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to push new memory block to tokens's source buffer!");
 
 		// NOTES:
@@ -2141,7 +2182,7 @@ static signed char Lexer_tryParseIdentifier(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to move the lexer's pointer!");
 
 		// NOTES:
@@ -2175,7 +2216,7 @@ static signed char Lexer_tryParseIdentifier(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to add token to tokens list!");
 
 		// NOTES:
@@ -2206,45 +2247,50 @@ static signed char Lexer_tryParseStringLiteral(
 	struct Vector* const * const tokens,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (_lexer_begin == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_begin is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_current == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_current is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_end == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_end is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens`'s deref is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -2343,7 +2389,7 @@ static signed char Lexer_tryParseStringLiteral(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to push new memory block to tokens's source buffer!");
 		// *succeeded = 0;
 		return 1;
@@ -2465,7 +2511,7 @@ static signed char Lexer_tryParseStringLiteral(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to add token to tokens list!");
 
 		// NOTES:
@@ -2502,7 +2548,7 @@ static signed char Lexer_tryParseStringLiteral(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to push new memory block to tokens's source buffer!");
 
 		// NOTES:
@@ -2539,7 +2585,7 @@ static signed char Lexer_tryParseStringLiteral(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to move the lexer's pointer!");
 
 		// NOTES:
@@ -2573,7 +2619,7 @@ static signed char Lexer_tryParseStringLiteral(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to add token to tokens list!");
 
 		// NOTES:
@@ -2604,45 +2650,50 @@ static signed char Lexer_tryParseSignedIntegerLiteral(
 	struct Vector* const * const tokens,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (_lexer_begin == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_begin is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_current == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_current is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_end == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_end is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens`'s deref is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -2721,7 +2772,7 @@ static signed char Lexer_tryParseSignedIntegerLiteral(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to add token to tokens list!");
 			// *succeeded = 0;
 			return 1;
@@ -2738,7 +2789,7 @@ static signed char Lexer_tryParseSignedIntegerLiteral(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to add token to tokens list!");
 			// *succeeded = 0;
 			return 1;
@@ -2755,7 +2806,7 @@ static signed char Lexer_tryParseSignedIntegerLiteral(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to add token to tokens list!");
 			// *succeeded = 0;
 			return 1;
@@ -2772,7 +2823,7 @@ static signed char Lexer_tryParseSignedIntegerLiteral(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to add token to tokens list!");
 			// *succeeded = 0;
 			return 1;
@@ -2795,7 +2846,7 @@ static signed char Lexer_tryParseSignedIntegerLiteral(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to push new memory block to tokens's source buffer!");
 
 		// NOTES:
@@ -2832,7 +2883,7 @@ static signed char Lexer_tryParseSignedIntegerLiteral(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to move the lexer's pointer!");
 
 		// NOTES:
@@ -2866,7 +2917,7 @@ static signed char Lexer_tryParseSignedIntegerLiteral(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to add token to tokens list!");
 
 		// NOTES:
@@ -2897,45 +2948,50 @@ static signed char Lexer_tryParseUnsignedIntegerLiteral(
 	struct Vector* const * const tokens,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (_lexer_begin == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_begin is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_current == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_current is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_end == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_end is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens`'s deref is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -3014,7 +3070,7 @@ static signed char Lexer_tryParseUnsignedIntegerLiteral(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to add token to tokens list!");
 			// *succeeded = 0;
 			return 1;
@@ -3031,7 +3087,7 @@ static signed char Lexer_tryParseUnsignedIntegerLiteral(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to add token to tokens list!");
 			// *succeeded = 0;
 			return 1;
@@ -3048,7 +3104,7 @@ static signed char Lexer_tryParseUnsignedIntegerLiteral(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to add token to tokens list!");
 			// *succeeded = 0;
 			return 1;
@@ -3065,7 +3121,7 @@ static signed char Lexer_tryParseUnsignedIntegerLiteral(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to add token to tokens list!");
 			// *succeeded = 0;
 			return 1;
@@ -3088,7 +3144,7 @@ static signed char Lexer_tryParseUnsignedIntegerLiteral(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to push new memory block to tokens's source buffer!");
 
 		// NOTES:
@@ -3125,7 +3181,7 @@ static signed char Lexer_tryParseUnsignedIntegerLiteral(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to move the lexer's pointer!");
 
 		// NOTES:
@@ -3159,7 +3215,7 @@ static signed char Lexer_tryParseUnsignedIntegerLiteral(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to add token to tokens list!");
 
 		// NOTES:
@@ -3190,45 +3246,50 @@ static signed char Lexer_tryParseFloatingPointLiteral(
 	struct Vector* const * const tokens,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (_lexer_begin == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_begin is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_current == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_current is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_end == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_end is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens`'s deref is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -3318,7 +3379,7 @@ static signed char Lexer_tryParseFloatingPointLiteral(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to add token to tokens list!");
 			// *succeeded = 0;
 			return 1;
@@ -3335,7 +3396,7 @@ static signed char Lexer_tryParseFloatingPointLiteral(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to add token to tokens list!");
 			// *succeeded = 0;
 			return 1;
@@ -3358,7 +3419,7 @@ static signed char Lexer_tryParseFloatingPointLiteral(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to push new memory block to tokens's source buffer!");
 
 		// NOTES:
@@ -3395,7 +3456,7 @@ static signed char Lexer_tryParseFloatingPointLiteral(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to move the lexer's pointer!");
 
 		// NOTES:
@@ -3429,7 +3490,7 @@ static signed char Lexer_tryParseFloatingPointLiteral(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to add token to tokens list!");
 
 		// NOTES:
@@ -3460,45 +3521,50 @@ static signed char Lexer_tryParsePointerLiteral(
 	struct Vector* const * const tokens,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (_lexer_begin == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_begin is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_current == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_current is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_end == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_end is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens`'s deref is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -3577,7 +3643,7 @@ static signed char Lexer_tryParsePointerLiteral(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to add token to tokens list!");
 			// *succeeded = 0;
 			return 1;
@@ -3594,7 +3660,7 @@ static signed char Lexer_tryParsePointerLiteral(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to add token to tokens list!");
 			// *succeeded = 0;
 			return 1;
@@ -3611,7 +3677,7 @@ static signed char Lexer_tryParsePointerLiteral(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to add token to tokens list!");
 			// *succeeded = 0;
 			return 1;
@@ -3628,7 +3694,7 @@ static signed char Lexer_tryParsePointerLiteral(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to add token to tokens list!");
 			// *succeeded = 0;
 			return 1;
@@ -3651,7 +3717,7 @@ static signed char Lexer_tryParsePointerLiteral(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to push new memory block to tokens's source buffer!");
 
 		// NOTES:
@@ -3688,7 +3754,7 @@ static signed char Lexer_tryParsePointerLiteral(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to move the lexer's pointer!");
 
 		// NOTES:
@@ -3722,7 +3788,7 @@ static signed char Lexer_tryParsePointerLiteral(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to add token to tokens list!");
 
 		// NOTES:
@@ -3753,45 +3819,50 @@ static signed char Lexer_tryParseInvalid(
 	struct Vector* const * const tokens,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (_lexer_begin == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_begin is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_current == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_current is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_end == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_end is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens`'s deref is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -3810,7 +3881,7 @@ static signed char Lexer_tryParseInvalid(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to check if char is a whitespace!");
 			// *succeeded = 0;
 			return 1;
@@ -3846,7 +3917,7 @@ static signed char Lexer_tryParseInvalid(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to add token to tokens list!");
 		// *succeeded = 0;
 		return 1;
@@ -3866,7 +3937,7 @@ static signed char Lexer_tryParseInvalid(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to push new memory block to tokens's source buffer!");
 
 		// NOTES:
@@ -3903,7 +3974,7 @@ static signed char Lexer_tryParseInvalid(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to move the lexer's pointer!");
 
 		// NOTES:
@@ -3937,7 +4008,7 @@ static signed char Lexer_tryParseInvalid(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to add token to tokens list!");
 
 		// NOTES:
@@ -3968,45 +4039,50 @@ static signed char Lexer_lexLine(
 	struct Vector* const * const tokens,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (_lexer_begin == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_begin is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_current == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_current is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (_lexer_end == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"global _lexer_end is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*tokens == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `tokens`'s deref is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -4028,7 +4104,7 @@ static signed char Lexer_lexLine(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to skip whitespaces!");
 			// *succeeded = 0;
 			return 1;

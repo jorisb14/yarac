@@ -44,7 +44,7 @@ static signed char CLI_usage(
 	{ \
 		if (!CLI_usage((_inmacro_stream), (_inmacro_arg0), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function CLI_usage(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -82,7 +82,7 @@ static signed char CLI_shift(
 	{ \
 		if (!CLI_shift((_inmacro_argc), (_inmacro_argv), (_inmacro_shifted), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function CLI_shift(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -103,17 +103,18 @@ signed char CLI_Args_create(
 	struct CLI_Args** const args,
 	signed char* const succeeded)
 {
-	if (args == NULL)
+	if (succeeded == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `args` is invalid (null)!");
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
 		return 0;
 	}
 
-	if (succeeded == NULL)
+	if (args == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `args` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -123,7 +124,7 @@ signed char CLI_Args_create(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to allocate memory for cli args block!");
 		// *succeeded = 0;
 		return 1;
@@ -138,7 +139,7 @@ signed char CLI_Args_create(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to create include directories list!");
 		// *succeeded = 0;
 		return 1;
@@ -153,7 +154,7 @@ signed char CLI_Args_create(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to create surces list!");
 		// *succeeded = 0;
 		return 1;
@@ -172,17 +173,18 @@ signed char CLI_Args_destroy(
 	const struct CLI_Args* const * const args,
 	signed char* const succeeded)
 {
-	if (args == NULL)
+	if (succeeded == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `args` is invalid (null)!");
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
 		return 0;
 	}
 
-	if (succeeded == NULL)
+	if (args == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `args` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -192,7 +194,7 @@ signed char CLI_Args_destroy(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to create include directories list!");
 		// *succeeded = 0;
 		return 1;
@@ -205,7 +207,7 @@ signed char CLI_Args_destroy(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to create surces list!");
 		// *succeeded = 0;
 		return 1;
@@ -218,7 +220,7 @@ signed char CLI_Args_destroy(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to deallocate memory for cli args block!");
 		// *succeeded = 0;
 		return 1;
@@ -235,38 +237,42 @@ signed char CLI_tryParseArgs(
 	struct CLI_Args* const * const args,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (argc == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `argc` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (argv == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `argv` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (args == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `args` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*args == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `args`'s deref is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -279,7 +285,7 @@ signed char CLI_tryParseArgs(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to shift the argv array!");
 		// *succeeded = 0;
 		return 1;
@@ -288,7 +294,7 @@ signed char CLI_tryParseArgs(
 
 	if (*argc <= 0)
 	{
-		W_Logger_log(LOG_KIND_ERROR, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_ERROR, INTERNAL_LOCATION, "%s",
 			"no command-line arguments were provided!");
 
 		W_CLI_usage(stderr, arg0, succeeded,
@@ -297,7 +303,7 @@ signed char CLI_tryParseArgs(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to display usage banner!");
 			// *succeeded = 0;
 			return 1;
@@ -318,7 +324,7 @@ signed char CLI_tryParseArgs(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to shift the argv array!");
 			// *succeeded = 0;
 			return 1;
@@ -327,7 +333,7 @@ signed char CLI_tryParseArgs(
 
 		if (flag == NULL)
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"encountered flag was invalid (null)!");
 
 			W_CLI_usage(stderr, arg0, succeeded,
@@ -336,7 +342,7 @@ signed char CLI_tryParseArgs(
 				return 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"failed to display usage banner!");
 				// *succeeded = 0;
 				return 1;
@@ -351,7 +357,7 @@ signed char CLI_tryParseArgs(
 		{
 			if (*argc <= 0)
 			{
-				W_Logger_log(LOG_KIND_ERROR, NO_LOCATION,
+				W_Logger_log(LOG_KIND_ERROR, INTERNAL_LOCATION,
 					"no command-line value provided for flag `%s`!",
 					flag);
 
@@ -361,7 +367,7 @@ signed char CLI_tryParseArgs(
 					return 0;
 				},
 				{
-					W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+					W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 						"failed to display usage banner!");
 					// *succeeded = 0;
 					return 1;
@@ -378,7 +384,7 @@ signed char CLI_tryParseArgs(
 				return 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"failed to shift the argv array!");
 				// *succeeded = 0;
 				return 1;
@@ -387,7 +393,7 @@ signed char CLI_tryParseArgs(
 
 			if (flag == NULL)
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"encountered flag was invalid (null)!");
 
 				W_CLI_usage(stderr, arg0, succeeded,
@@ -396,7 +402,7 @@ signed char CLI_tryParseArgs(
 					return 0;
 				},
 				{
-					W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+					W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 						"failed to display usage banner!");
 					// *succeeded = 0;
 					return 1;
@@ -413,7 +419,7 @@ signed char CLI_tryParseArgs(
 				return 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"failed to add include directory to include directories list!");
 				// *succeeded = 0;
 				return 0;
@@ -424,7 +430,7 @@ signed char CLI_tryParseArgs(
 		{
 			if ((*args)->outputFormat != NULL)
 			{
-				W_Logger_log(LOG_KIND_ERROR, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_ERROR, INTERNAL_LOCATION, "%s",
 					"repeating --output-format | -of flag!");
 
 				W_CLI_usage(stderr, arg0, succeeded,
@@ -433,7 +439,7 @@ signed char CLI_tryParseArgs(
 					return 0;
 				},
 				{
-					W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+					W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 						"failed to display usage banner!");
 					// *succeeded = 0;
 					return 1;
@@ -446,7 +452,7 @@ signed char CLI_tryParseArgs(
 
 			if (*argc <= 0)
 			{
-				W_Logger_log(LOG_KIND_ERROR, NO_LOCATION,
+				W_Logger_log(LOG_KIND_ERROR, INTERNAL_LOCATION,
 					"no command-line value provided for flag `%s`!",
 					flag);
 
@@ -456,7 +462,7 @@ signed char CLI_tryParseArgs(
 					return 0;
 				},
 				{
-					W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+					W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 						"failed to display usage banner!");
 					// *succeeded = 0;
 					return 1;
@@ -473,7 +479,7 @@ signed char CLI_tryParseArgs(
 				return 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"failed to shift the argv array!");
 				// *succeeded = 0;
 				return 1;
@@ -482,7 +488,7 @@ signed char CLI_tryParseArgs(
 
 			if (flag == NULL)
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"encountered flag was invalid (null)!");
 
 				W_CLI_usage(stderr, arg0, succeeded,
@@ -491,7 +497,7 @@ signed char CLI_tryParseArgs(
 					return 0;
 				},
 				{
-					W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+					W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 						"failed to display usage banner!");
 					// *succeeded = 0;
 					return 1;
@@ -506,7 +512,7 @@ signed char CLI_tryParseArgs(
 
 			if (strncmp((*args)->outputFormat, "nasm", 4) != 0 && strncmp((*args)->outputFormat, "o", 1) != 0)
 			{
-				W_Logger_log(LOG_KIND_ERROR, NO_LOCATION,
+				W_Logger_log(LOG_KIND_ERROR, INTERNAL_LOCATION,
 					"invalid --output-format | -of flag value provided: %s!",
 					(*args)->outputFormat);
 				*succeeded = 0;
@@ -517,7 +523,7 @@ signed char CLI_tryParseArgs(
 		{
 			if ((*args)->artefactsDirectory != NULL)
 			{
-				W_Logger_log(LOG_KIND_ERROR, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_ERROR, INTERNAL_LOCATION, "%s",
 					"repeating --artefacts-dir | -ad flag!");
 
 				W_CLI_usage(stderr, arg0, succeeded,
@@ -526,7 +532,7 @@ signed char CLI_tryParseArgs(
 					return 0;
 				},
 				{
-					W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+					W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 						"failed to display usage banner!");
 					// *succeeded = 0;
 					return 1;
@@ -539,7 +545,7 @@ signed char CLI_tryParseArgs(
 
 			if (*argc <= 0)
 			{
-				W_Logger_log(LOG_KIND_ERROR, NO_LOCATION,
+				W_Logger_log(LOG_KIND_ERROR, INTERNAL_LOCATION,
 					"no command-line value provided for flag `%s`!",
 					flag);
 
@@ -549,7 +555,7 @@ signed char CLI_tryParseArgs(
 					return 0;
 				},
 				{
-					W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+					W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 						"failed to display usage banner!");
 					// *succeeded = 0;
 					return 1;
@@ -566,7 +572,7 @@ signed char CLI_tryParseArgs(
 				return 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"failed to shift the argv array!");
 				// *succeeded = 0;
 				return 1;
@@ -575,7 +581,7 @@ signed char CLI_tryParseArgs(
 
 			if (flag == NULL)
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"encountered flag was invalid (null)!");
 
 				W_CLI_usage(stderr, arg0, succeeded,
@@ -584,7 +590,7 @@ signed char CLI_tryParseArgs(
 					return 0;
 				},
 				{
-					W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+					W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 						"failed to display usage banner!");
 					// *succeeded = 0;
 					return 1;
@@ -601,7 +607,7 @@ signed char CLI_tryParseArgs(
 		{
 			if ((*args)->optimizationMode != NULL)
 			{
-				W_Logger_log(LOG_KIND_ERROR, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_ERROR, INTERNAL_LOCATION, "%s",
 					"repeating --optimizations-mode | -om flag!");
 
 				W_CLI_usage(stderr, arg0, succeeded,
@@ -610,7 +616,7 @@ signed char CLI_tryParseArgs(
 					return 0;
 				},
 				{
-					W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+					W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 						"failed to display usage banner!");
 					// *succeeded = 0;
 					return 1;
@@ -623,7 +629,7 @@ signed char CLI_tryParseArgs(
 
 			if (*argc <= 0)
 			{
-				W_Logger_log(LOG_KIND_ERROR, NO_LOCATION,
+				W_Logger_log(LOG_KIND_ERROR, INTERNAL_LOCATION,
 					"no command-line value provided for flag `%s`!",
 					flag);
 
@@ -633,7 +639,7 @@ signed char CLI_tryParseArgs(
 					return 0;
 				},
 				{
-					W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+					W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 						"failed to display usage banner!");
 					// *succeeded = 0;
 					return 1;
@@ -650,7 +656,7 @@ signed char CLI_tryParseArgs(
 				return 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"failed to shift the argv array!");
 				// *succeeded = 0;
 				return 1;
@@ -659,7 +665,7 @@ signed char CLI_tryParseArgs(
 
 			if (flag == NULL)
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"encountered flag was invalid (null)!");
 
 				W_CLI_usage(stderr, arg0, succeeded,
@@ -668,7 +674,7 @@ signed char CLI_tryParseArgs(
 					return 0;
 				},
 				{
-					W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+					W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 						"failed to display usage banner!");
 					// *succeeded = 0;
 					return 1;
@@ -683,7 +689,7 @@ signed char CLI_tryParseArgs(
 
 			if (strncmp((*args)->optimizationMode, "none", 4) != 0 && strncmp((*args)->optimizationMode, "size", 4) != 0 && strncmp((*args)->optimizationMode, "speed", 5) != 0 && strncmp((*args)->optimizationMode, "all", 3) != 0)
 			{
-				W_Logger_log(LOG_KIND_ERROR, NO_LOCATION,
+				W_Logger_log(LOG_KIND_ERROR, INTERNAL_LOCATION,
 					"invalid --optimizations-mode | -om flag value provided: %s!",
 					(*args)->optimizationMode);
 				*succeeded = 0;
@@ -698,7 +704,7 @@ signed char CLI_tryParseArgs(
 				return 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"failed to display usage banner!");
 				// *succeeded = 0;
 				return 1;
@@ -716,7 +722,7 @@ signed char CLI_tryParseArgs(
 				return 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"failed to add source to sources list!");
 				// *succeeded = 0;
 				return 0;
@@ -742,7 +748,7 @@ signed char CLI_tryParseArgs(
 
 	if ((*args)->sources->count <= 0)
 	{
-		W_Logger_log(LOG_KIND_ERROR, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_ERROR, INTERNAL_LOCATION, "%s",
 			"no source files were provided!");
 
 		W_CLI_usage(stdout, arg0, succeeded,
@@ -751,7 +757,7 @@ signed char CLI_tryParseArgs(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to display usage banner!");
 			// *succeeded = 0;
 			return 1;
@@ -771,24 +777,26 @@ static signed char CLI_usage(
 	const char* const arg0,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (stream == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `stream` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (arg0 == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `arg0` is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -822,31 +830,34 @@ static signed char CLI_shift(
 	const char** const shifted,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (argc == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `argc` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (argv == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `argv` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (shifted == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `shifted` is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -855,7 +866,7 @@ static signed char CLI_shift(
 
 	if (!(*argc > 0 && *argv != NULL))
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to shift args, since there are no more command-line arguments left!");
 		*succeeded = 0;
 		return 0;

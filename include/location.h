@@ -27,13 +27,17 @@ struct Location
 	unsigned long long column;
 };
 
-#if YARAC_DEBUG
-#	define NO_LOCATION ((struct Location) { .file = (const char*)__FILE__, .line = (unsigned long long)__LINE__, .column = 0 })
-#else
+#ifndef INTERNAL_LOCATION
+#	define INTERNAL_LOCATION ((struct Location) { .file = (const char*)__FILE__, .line = (unsigned long long)__LINE__, .column = 0 })
+#endif
+
+#ifndef NO_LOCATION
 #	define NO_LOCATION ((struct Location) { .file = NULL, .line = 0, .column = 0 })
 #endif
 
-#define INVALID_LOCATION NO_LOCATION
+#ifndef INVALID_LOCATION
+#	define INVALID_LOCATION NO_LOCATION
+#endif
 
 /**
  * @}

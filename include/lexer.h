@@ -41,7 +41,7 @@ signed char Lexer_lexFile(
 	{ \
 		if (!Lexer_lexFile((_inmacro_filePath), (_inmacro_tokens), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Lexer_lexFile(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -77,7 +77,7 @@ signed char Lexer_validateTokens(
 	{ \
 		if (!Lexer_validateTokens((_inmacro_filePath), (_inmacro_tokens), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Lexer_validateTokens(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
