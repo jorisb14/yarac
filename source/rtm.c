@@ -20,10 +20,6 @@
  * @{
  */
 
-#if YARAC_DEBUG
-static signed long long _rtm_counter = 0;
-#endif
-
 signed char RTM_malloc(
 	const void** const destination,
 	const unsigned long long size,
@@ -53,10 +49,6 @@ signed char RTM_malloc(
 		return 1;
 	}
 
-#if YARAC_DEBUG
-	++_rtm_counter;
-#endif
-
 	*succeeded = 1;
 	return 1;
 }
@@ -70,13 +62,6 @@ signed char RTM_realloc(
 	{
 		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
 			"provided function parameter `destination` is invalid (null)!");
-		return 0;
-	}
-
-	if (*destination == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `destination`'s deref is invalid (null)!");
 		return 0;
 	}
 
@@ -120,11 +105,6 @@ signed char RTM_free(
 	}
 
 	free((void*)(*source));
-
-#if YARAC_DEBUG
-	--_rtm_counter;
-#endif
-
 	*succeeded = 1;
 	return 1;
 }

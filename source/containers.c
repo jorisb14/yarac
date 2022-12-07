@@ -743,7 +743,8 @@ signed char Vector_pushLast(
 			return 0;
 		},
 		{
-			// TODO: log!
+			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				"failed to reallocate memory for a vector!");
 			// *succeeded = 0;
 			return 1;
 		},
