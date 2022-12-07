@@ -2,8 +2,9 @@
 /**
  * @file main.c
  *
- * @copyright This file is a part of the project yarac and is distributed under MIT license that
- * should have been included with the project. If not, see https://choosealicense.com/licenses/mit/
+ * @copyright This file is a part of the project yarac and is distributed under GNU GPLv3 license
+ * that should have been included with the project.
+ * If not, see https://www.gnu.org/licenses/gpl-3.0.en.html
  *
  * @author jorisb
  *
@@ -204,55 +205,6 @@ static signed char Yarac_main(
 		}
 #endif
 
-#if 0
-		struct Frame* frame = NULL;
-
-		W_Parser_parseFrame(&tokens, &frame, succeeded,
-		{
-			*succeeded = 0;
-			goto local_frame_cleanup;
-		},
-		{
-			W_Logger_log(LOG_KIND_ERROR, NO_LOCATION,
-				"failed to parse frame for file: %s!",
-				(const char*)source);
-			// *succeeded = 0;
-			goto local_frame_cleanup;
-		},
-		{
-			FILE* file = fopen("./frame.txt", "w");
-
-			W_Frame_serialize((const struct Frame* const * const)&frame, file, succeeded,
-			{},
-			{},
-			{});
-
-			/*
-			// TODO: Save meta data!
-			// TODO: rework this:
-			signed char temp = 0;
-			FILE* file = fopen("meta.out", "w");
-			assert(file != NULL);
-			Frame_print(file, (const struct Frame* const * const)&frame, 0, &temp);
-			fclose(file);
-			*/
-		});
-
-local_frame_cleanup:
-		W_Frame_destroy(&frame, succeeded,
-		{
-			*succeeded = 0;
-			return 0;
-		},
-		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-				"failed to destroy include directories list!");
-			// *succeeded = 0;
-			goto global_cleanup;
-		},
-		{});
-#endif
-
 local_tokens_cleanup:
 		for (unsigned long long index = 0; index < tokens->count; ++index)
 		{
@@ -275,24 +227,12 @@ local_tokens_cleanup:
 				*succeeded = 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_ERROR, NO_LOCATION,
-					"failed to destroy a token!",
-					(const char*)source);
+				W_Logger_log(LOG_KIND_ERROR, NO_LOCATION, "%s",
+					"failed to destroy a token!");
 				// *succeeded = 0;
 			},
 			{});
 		}
-
-		// W_Vector_destroy((const struct Vector* const * const)&tokens, succeeded,
-		// {
-		// 	*succeeded = 0;
-		// },
-		// {
-		// 	W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-		// 		"failed to destroy tokens list!");
-		// 	// *succeeded = 0;
-		// },
-		// {});
 
 		// Restart setting the tokens without modifying vector's buffer:
 		tokens->count = 0;

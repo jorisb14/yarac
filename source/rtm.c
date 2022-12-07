@@ -2,8 +2,9 @@
 /**
  * @file rtm.c
  *
- * @copyright This file is a part of the project yarac and is distributed under MIT license that
- * should have been included with the project. If not, see https://choosealicense.com/licenses/mit/
+ * @copyright This file is a part of the project yarac and is distributed under GNU GPLv3 license
+ * that should have been included with the project.
+ * If not, see https://www.gnu.org/licenses/gpl-3.0.en.html
  *
  * @author jorisb
  *
@@ -18,10 +19,6 @@
  * 
  * @{
  */
-
-#if YARAC_DEBUG
-static signed long long _rtm_counter = 0;
-#endif
 
 signed char RTM_malloc(
 	const void** const destination,
@@ -52,10 +49,6 @@ signed char RTM_malloc(
 		return 1;
 	}
 
-#if YARAC_DEBUG
-	++_rtm_counter;
-#endif
-
 	*succeeded = 1;
 	return 1;
 }
@@ -69,13 +62,6 @@ signed char RTM_realloc(
 	{
 		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
 			"provided function parameter `destination` is invalid (null)!");
-		return 0;
-	}
-
-	if (*destination == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `destination`'s deref is invalid (null)!");
 		return 0;
 	}
 
@@ -119,11 +105,6 @@ signed char RTM_free(
 	}
 
 	free((void*)(*source));
-
-#if YARAC_DEBUG
-	--_rtm_counter;
-#endif
-
 	*succeeded = 1;
 	return 1;
 }

@@ -2,8 +2,9 @@
 /**
  * @file lexer.c
  *
- * @copyright This file is a part of the project yarac and is distributed under MIT license that
- * should have been included with the project. If not, see https://choosealicense.com/licenses/mit/
+ * @copyright This file is a part of the project yarac and is distributed under GNU GPLv3 license
+ * that should have been included with the project.
+ * If not, see https://www.gnu.org/licenses/gpl-3.0.en.html
  *
  * @author jorisb
  *
@@ -747,7 +748,8 @@ signed char Lexer_lexFile(
 			return 0;
 		},
 		{
-			// TODO: log!
+			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				"failed to read a line from file!");
 			// *succeeded = 0;
 			return 1;
 		},
@@ -869,7 +871,8 @@ signed char Lexer_validateTokens(
 			return 0;
 		},
 		{
-			// TODO: log!
+			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				"failed to get an element from vector!");
 			// *succeeded = 0;
 			return 1;
 		},
@@ -947,38 +950,21 @@ static signed char Lexer_getLine(
 	*length = *length != 0 ? *length + 1 : *length;
 	fseek(file, -(*length), SEEK_CUR);
 
-	if (_lexer_begin != NULL)
-	{
-		W_RTM_free((const void* const * const)&_lexer_begin, succeeded,
-		{
-			*succeeded = 0;
-			return 0;
-		},
-		{
-			// TODO: log!
-			// *succeeded = 0;
-			return 1;
-		},
-		{
-			_lexer_begin = NULL;
-		});
-	}
-
-	W_RTM_malloc((const void** const)&_lexer_begin, (*length + 1) * sizeof(char), succeeded,
+	W_RTM_realloc((const void** const)&_lexer_begin, (*length + 1) * sizeof(char), succeeded,
 	{
 		*succeeded = 0;
 		return 0;
 	},
 	{
-		// TODO: log!
+		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			"failed to reallocate memory for the new line!");
 		// *succeeded = 0;
 		return 1;
 	},
 	{});
 
-	char* result = fgets(_lexer_begin, *length + 1, file);
+	_lexer_begin = fgets(_lexer_begin, *length + 1, file);
 	_lexer_begin[*length] = 0;
-	(void)result; // Hack to supress errors for unused return value.
 
 	*succeeded = 1;
 	return 1;
@@ -1318,7 +1304,7 @@ static signed char Lexer_tryParseKeyword(
 			},
 			{
 				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-					"failed to push new memory block to !");
+					"failed to push new memory block to tokens's source buffer!");
 
 				// NOTES:
 				//     1. Not handling callbacks, because if destroying the token failed once, it will probably fail more times.
@@ -1590,7 +1576,7 @@ static signed char Lexer_tryParseIntrinsic(
 			},
 			{
 				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-					"failed to push new memory block to !");
+					"failed to push new memory block to tokens's source buffer!");
 
 				// NOTES:
 				//     1. Not handling callbacks, because if destroying the token failed once, it will probably fail more times.
@@ -1828,7 +1814,7 @@ static signed char Lexer_tryParseDecorator(
 			},
 			{
 				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-					"failed to push new memory block to !");
+					"failed to push new memory block to tokens's source buffer!");
 
 				// NOTES:
 				//     1. Not handling callbacks, because if destroying the token failed once, it will probably fail more times.
@@ -2119,7 +2105,7 @@ static signed char Lexer_tryParseIdentifier(
 	},
 	{
 		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"failed to push new memory block to !");
+			"failed to push new memory block to tokens's source buffer!");
 
 		// NOTES:
 		//     1. Not handling callbacks, because if destroying the token failed once, it will probably fail more times.
@@ -2358,7 +2344,7 @@ static signed char Lexer_tryParseStringLiteral(
 	},
 	{
 		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"failed to push new memory block to !");
+			"failed to push new memory block to tokens's source buffer!");
 		// *succeeded = 0;
 		return 1;
 	},
@@ -2517,7 +2503,7 @@ static signed char Lexer_tryParseStringLiteral(
 	},
 	{
 		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"failed to push new memory block to !");
+			"failed to push new memory block to tokens's source buffer!");
 
 		// NOTES:
 		//     1. Not handling callbacks, because if destroying the token failed once, it will probably fail more times.
@@ -2810,7 +2796,7 @@ static signed char Lexer_tryParseSignedIntegerLiteral(
 	},
 	{
 		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"failed to push new memory block to !");
+			"failed to push new memory block to tokens's source buffer!");
 
 		// NOTES:
 		//     1. Not handling callbacks, because if destroying the token failed once, it will probably fail more times.
@@ -3103,7 +3089,7 @@ static signed char Lexer_tryParseUnsignedIntegerLiteral(
 	},
 	{
 		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"failed to push new memory block to !");
+			"failed to push new memory block to tokens's source buffer!");
 
 		// NOTES:
 		//     1. Not handling callbacks, because if destroying the token failed once, it will probably fail more times.
@@ -3373,7 +3359,7 @@ static signed char Lexer_tryParseFloatingPointLiteral(
 	},
 	{
 		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"failed to push new memory block to !");
+			"failed to push new memory block to tokens's source buffer!");
 
 		// NOTES:
 		//     1. Not handling callbacks, because if destroying the token failed once, it will probably fail more times.
@@ -3666,7 +3652,7 @@ static signed char Lexer_tryParsePointerLiteral(
 	},
 	{
 		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"failed to push new memory block to !");
+			"failed to push new memory block to tokens's source buffer!");
 
 		// NOTES:
 		//     1. Not handling callbacks, because if destroying the token failed once, it will probably fail more times.
@@ -3881,7 +3867,7 @@ static signed char Lexer_tryParseInvalid(
 	},
 	{
 		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"failed to push new memory block to !");
+			"failed to push new memory block to tokens's source buffer!");
 
 		// NOTES:
 		//     1. Not handling callbacks, because if destroying the token failed once, it will probably fail more times.

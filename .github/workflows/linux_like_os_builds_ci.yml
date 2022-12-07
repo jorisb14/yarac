@@ -1,0 +1,29 @@
+
+name: Linux-like OS Builds CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  ubuntu-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run autogen.sh
+        run: ./autogen.sh
+
+      - name: Make build directory
+        run: mkdir ./build
+
+      - name: Run configure and make
+        run: |
+          cd ./build
+          ./../configure
+          make
+          make check
+          make distcheck

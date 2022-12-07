@@ -13,7 +13,9 @@
 		"limits": "c",
 		"new": "c",
 		"typeinfo": "cpp",
-		"*.uth": "c"
+		"*.uth": "c",
+		"rtm.h": "c"
 	},
-	"cmake.sourceDirectory": "${workspaceFolder}/yarac"
+	"cmake.sourceDirectory": "${workspaceFolder}/yarac",
+	"cmake.configureOnOpen": false
 }

@@ -22,7 +22,6 @@ gcc \
 	-Werror \
 	-Wshadow \
 	-O3 \
-	-DYARAC_RELEASE=1 \
 	-DUT_TESTS_CAP=1024 \
 	-DUT_SUPRESS_LOGS=1 \
 	-I$yarac_include_dir \

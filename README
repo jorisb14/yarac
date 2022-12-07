@@ -21,6 +21,15 @@
 > make # Builds
 ```
 
+`Custom build:`
+```console
+> cd <yarac-root>
+> ./autogen.sh # Generates 'configure' and make files
+> mkdir ./build && cd ./build
+> ./../configure CFLAGS="<any c compiler flags>"
+> make # Builds
+```
+
 
 ## Use
 Instructions to use the compiler.

@@ -2,8 +2,9 @@
 /**
  * @file containers.c
  *
- * @copyright This file is a part of the project yarac and is distributed under MIT license that
- * should have been included with the project. If not, see https://choosealicense.com/licenses/mit/
+ * @copyright This file is a part of the project yarac and is distributed under GNU GPLv3 license
+ * that should have been included with the project.
+ * If not, see https://www.gnu.org/licenses/gpl-3.0.en.html
  *
  * @author jorisb
  *
@@ -742,7 +743,8 @@ signed char Vector_pushLast(
 			return 0;
 		},
 		{
-			// TODO: log!
+			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				"failed to reallocate memory for a vector!");
 			// *succeeded = 0;
 			return 1;
 		},
