@@ -24,6 +24,38 @@
  * @{
  */
 
+struct Hash64
+{
+	unsigned long long value;
+};
+
+static signed char Hash64_hash(
+	struct Hash64* const hash,
+	const unsigned char* const bytes,
+	const unsigned long long length,
+	signed char* const succeeded);
+
+#define W_Hash64_hash(_inmacro_hash, _inmacro_bytes, _inmacro_length, _inmacro_succeeded, _inmacro_internalFailCallback, _inmacro_logicalFailCallback, _inmacro_successCallback) \
+	{ \
+		if (!Hash64_hash((_inmacro_hash), (_inmacro_bytes), (_inmacro_length), (_inmacro_succeeded))) \
+		{ \
+			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+				"function Hash64_hash(...) returned with internal failure!"); \
+			_inmacro_internalFailCallback \
+		} \
+		else \
+		{ \
+			if (!(*(_inmacro_succeeded))) \
+			{ \
+				_inmacro_logicalFailCallback \
+			} \
+			else \
+			{ \
+				_inmacro_successCallback \
+			} \
+		} \
+	}
+
 signed char Vector_create(
 	struct Vector** const vector,
 	const unsigned long long capacity,
@@ -902,71 +934,6 @@ signed char Map_destroy(
 	return 1;
 }
 
-struct Hash64
-{
-	unsigned long long value;
-};
-
-static signed char Hash64_hash(
-	struct Hash64* const hash,
-	const unsigned char* const bytes,
-	const unsigned long long length,
-	signed char* const succeeded)
-{
-	if (hash == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `hash` is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
-		return 0;
-	}
-
-	unsigned long long state = 0;
-
-	#define PRIMARY1 ((const unsigned char)13)
-	#define PRIMARY2 ((const unsigned char)31)
-
-	for (unsigned long long i = 0; i < length; ++i)
-	{
-		const unsigned char value = *(const unsigned char* const)(bytes + i);
-		state += ((value + (state ^ PRIMARY2)) % PRIMARY2) & PRIMARY1;
-	}
-
-	#undef PRIMARY1
-	#undef PRIMARY2
-
-	hash->value = state;
-	*succeeded = 1;
-	return 1;
-}
-
-#define W_Hash64_hash(_inmacro_hash, _inmacro_bytes, _inmacro_length, _inmacro_succeeded, _inmacro_internalFailCallback, _inmacro_logicalFailCallback, _inmacro_successCallback) \
-	{ \
-		if (!Hash64_hash((_inmacro_hash), (_inmacro_bytes), (_inmacro_length), (_inmacro_succeeded))) \
-		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
-				"function Hash64_hash(...) returned with internal failure!"); \
-			_inmacro_internalFailCallback \
-		} \
-		else \
-		{ \
-			if (!(*(_inmacro_succeeded))) \
-			{ \
-				_inmacro_logicalFailCallback \
-			} \
-			else \
-			{ \
-				_inmacro_successCallback \
-			} \
-		} \
-	}
-
 signed char Map_set(
 	struct Map* const * const map,
 	const char* const key,
@@ -1191,6 +1158,45 @@ signed char Map_get(
 
 	*value = NULL;
 	*succeeded = 0;
+	return 1;
+}
+
+static signed char Hash64_hash(
+	struct Hash64* const hash,
+	const unsigned char* const bytes,
+	const unsigned long long length,
+	signed char* const succeeded)
+{
+	if (hash == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			"provided function parameter `hash` is invalid (null)!");
+		return 0;
+	}
+
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
+	unsigned long long state = 0;
+
+	#define PRIMARY1 ((const unsigned char)13)
+	#define PRIMARY2 ((const unsigned char)31)
+
+	for (unsigned long long i = 0; i < length; ++i)
+	{
+		const unsigned char value = *(const unsigned char* const)(bytes + i);
+		state += ((value + (state ^ PRIMARY2)) % PRIMARY2) & PRIMARY1;
+	}
+
+	#undef PRIMARY1
+	#undef PRIMARY2
+
+	hash->value = state;
+	*succeeded = 1;
 	return 1;
 }
 
