@@ -38,7 +38,7 @@ static signed char Yarac_main(
 	{ \
 		if (!Yarac_main((_inmacro_argc), (_inmacro_argv), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Yarac_main(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -67,7 +67,7 @@ int main(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to run the yarac compiler!!");
 		// succeeded = 0;
 		return 0;
@@ -83,24 +83,26 @@ static signed char Yarac_main(
 	const char*** const argv,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (argc == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `argc` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (argv == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `argv` is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -115,7 +117,7 @@ static signed char Yarac_main(
 		goto global_cleanup;
 	},
 	{
-		W_Logger_log(LOG_KIND_ERROR, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_ERROR, INTERNAL_LOCATION, "%s",
 			"failed to create cli arguments container!");
 		// *succeeded = 0;
 		goto global_cleanup;
@@ -128,7 +130,7 @@ static signed char Yarac_main(
 		goto global_cleanup;
 	},
 	{
-		W_Logger_log(LOG_KIND_ERROR, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_ERROR, INTERNAL_LOCATION, "%s",
 			"failed to parse command-line arguments!");
 		// *succeeded = 0;
 		goto global_cleanup;
@@ -144,7 +146,7 @@ static signed char Yarac_main(
 		goto global_cleanup;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to create vector container!");
 		// *succeeded = 0;
 		goto global_cleanup;
@@ -162,7 +164,7 @@ static signed char Yarac_main(
 			goto local_tokens_cleanup;
 		},
 		{
-			W_Logger_log(LOG_KIND_ERROR, NO_LOCATION,
+			W_Logger_log(LOG_KIND_ERROR, INTERNAL_LOCATION,
 				"failed to lex file: %s!",
 				source);
 			goto local_tokens_cleanup;
@@ -174,7 +176,7 @@ static signed char Yarac_main(
 				goto local_tokens_cleanup;
 			},
 			{
-				W_Logger_log(LOG_KIND_ERROR, NO_LOCATION,
+				W_Logger_log(LOG_KIND_ERROR, INTERNAL_LOCATION,
 					"failed to validate file: %s!",
 					source);
 				// *succeeded = 0;
@@ -227,7 +229,7 @@ local_tokens_cleanup:
 				*succeeded = 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_ERROR, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_ERROR, INTERNAL_LOCATION, "%s",
 					"failed to destroy a token!");
 				// *succeeded = 0;
 			},
@@ -244,7 +246,7 @@ local_tokens_cleanup:
 		goto global_cleanup;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to destroy vector container!");
 		// *succeeded = 0;
 		goto global_cleanup;
@@ -258,7 +260,7 @@ global_cleanup:
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to destroy cli args!");
 		*succeeded = 0;
 		return 1;

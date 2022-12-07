@@ -194,7 +194,7 @@ signed char Token_create(
 	{ \
 		if (!Token_create((_inmacro_token), (_inmacro_id), (_inmacro_kind), (_inmacro_location), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Token_create(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -230,7 +230,7 @@ signed char Token_destroy(
 	{ \
 		if (!Token_destroy((_inmacro_token), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Token_destroy(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -372,7 +372,7 @@ signed char Block_create(
 	{ \
 		if (!Block_create((_inmacro_block), (_inmacro_kind), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Block_create(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -408,7 +408,7 @@ signed char Block_destroy(
 	{ \
 		if (!Block_destroy((_inmacro_block), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Block_destroy(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -448,7 +448,7 @@ signed char Frame_create(
 	{ \
 		if (!Frame_create((_inmacro_frame), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Frame_create(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -484,7 +484,7 @@ signed char Frame_destroy(
 	{ \
 		if (!Frame_destroy((_inmacro_frame), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Frame_destroy(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \

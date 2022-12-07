@@ -39,7 +39,7 @@ static signed char Hash64_hash(
 	{ \
 		if (!Hash64_hash((_inmacro_hash), (_inmacro_bytes), (_inmacro_length), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Hash64_hash(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -61,17 +61,18 @@ signed char Vector_create(
 	const unsigned long long capacity,
 	signed char* const succeeded)
 {
-	if (vector == NULL)
+	if (succeeded == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `vector` is invalid (null)!");
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
 		return 0;
 	}
 
-	if (succeeded == NULL)
+	if (vector == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `vector` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -81,7 +82,7 @@ signed char Vector_create(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"Failed to allocate memory for a vector!");
 		// *succeeded = 0;
 		return 1;
@@ -96,7 +97,7 @@ signed char Vector_create(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to allocate memory block for vector's data!");
 		// *succeeded = 0;
 		return 1;
@@ -114,26 +115,30 @@ signed char Vector_destroy(
 	const struct Vector* const * const vector,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (vector == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `vector` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*vector == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `vector`'s deref is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
-		return 0;
-	}
+	*succeeded = 0;
 
 	W_RTM_free((const void* const * const)(&((*vector)->data)), succeeded,
 	{
@@ -141,7 +146,7 @@ signed char Vector_destroy(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to deallocate vector's data!");
 		// *succeeded = 0;
 		return 1;
@@ -154,7 +159,7 @@ signed char Vector_destroy(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to deallocate vector!");
 		// *succeeded = 0;
 		return 1;
@@ -171,38 +176,42 @@ signed char Vector_getAt(
 	void** const data,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (vector == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `vector` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*vector == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `vector`'s deref is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (index >= (*vector)->count)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `index` is out of bounds!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (data == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `data` is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -217,38 +226,42 @@ signed char Vector_setAt(
 	void* const data,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (vector == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `vector` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*vector == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `vector`'s deref is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (index >= (*vector)->count)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `index` is out of bounds!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (data == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `data` is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -262,37 +275,42 @@ signed char Vector_pushLast(
 	void* const data,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (vector == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `vector` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*vector == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `vector`'s deref is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (data == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `data` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
-		return 0;
-	}
+	*succeeded = 0;
 
 	if ((*vector)->count + 1 > (*vector)->capacity)
 	{
-		unsigned long long newCapacity = (*vector)->capacity + ((*vector)->capacity / 2);
+		const unsigned long long newCapacity = (*vector)->capacity + ((*vector)->capacity / 2);
 
 		W_RTM_realloc((const void** const)(&((*vector)->data)), newCapacity * sizeof(void*), succeeded,
 		{
@@ -300,7 +318,7 @@ signed char Vector_pushLast(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to reallocate memory for a vector!");
 			// *succeeded = 0;
 			return 1;
@@ -323,19 +341,22 @@ signed char List_create(
 	struct List** const list,
 	signed char* const succeeded)
 {
-	if (list == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `list` is invalid (null)!");
-		return 0;
-	}
-
 	if (succeeded == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `succeeded` is invalid (null)!");
 		return 0;
 	}
+
+	if (list == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `list` is invalid (null)!");
+		*succeeded = 0;
+		return 0;
+	}
+
+	*succeeded = 0;
 
 	W_RTM_malloc((const void** const)list, sizeof(struct List), succeeded,
 	{
@@ -343,7 +364,7 @@ signed char List_create(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"Failed to allocate memory for a list!");
 		// *succeeded = 0;
 		return 1;
@@ -360,24 +381,26 @@ signed char List_destroy(
 	const struct List* const * const list,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (list == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `list` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*list == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `list`'s deref is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -396,7 +419,7 @@ signed char List_destroy(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to deallocate list's node!");
 			// *succeeded = 0;
 			return 1;
@@ -410,7 +433,7 @@ signed char List_destroy(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to deallocate list!");
 		// *succeeded = 0;
 		return 1;
@@ -421,74 +444,39 @@ signed char List_destroy(
 	return 1;
 }
 
-signed char List_getCount(
-	const struct List* const * const list,
-	unsigned long long* const count,
-	signed char* const succeeded)
-{
-	if (list == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `list` is invalid (null)!");
-		return 0;
-	}
-
-	if (*list == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `list`'s deref is invalid (null)!");
-		return 0;
-	}
-
-	if (count == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `count` is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
-		return 0;
-	}
-
-	*count = (*list)->count;
-	*succeeded = 1;
-	return 1;
-}
-
 signed char List_pushFirst(
 	struct List* const * const list,
 	void* const data,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (list == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `list` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*list == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `list`'s deref is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (data == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `data` is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -502,7 +490,7 @@ signed char List_pushFirst(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to allocate memory block for list's node!");
 		// *succeeded = 0;
 		return 1;
@@ -532,31 +520,34 @@ signed char List_pushLast(
 	void* const data,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (list == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `list` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*list == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `list`'s deref is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (data == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `data` is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -570,7 +561,7 @@ signed char List_pushLast(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to allocate memory block for list's node!");
 		// *succeeded = 0;
 		return 1;
@@ -613,38 +604,42 @@ signed char List_popFirst(
 	void** const popped,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (list == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `list` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*list == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `list`'s deref is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if ((*list)->head == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `list`s head is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (popped == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `popped` is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -662,40 +657,46 @@ signed char List_popLast(
 	void** const popped,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (list == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `list` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*list == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `list`'s deref is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if ((*list)->head == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `list`s head is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (popped == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `popped` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
-		return 0;
-	}
+	*succeeded = 0;
 
 	struct List_Node* last = (*list)->head;
 
@@ -717,31 +718,34 @@ signed char List_peekFirst(
 	void** const peeked,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (list == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `list` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*list == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `list`'s deref is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (peeked == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `peeked` is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -755,33 +759,38 @@ signed char List_peekLast(
 	void** const peeked,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (list == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `list` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*list == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `list`'s deref is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (peeked == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `peeked` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
-		return 0;
-	}
+	*succeeded = 0;
 
 	struct List_Node* last = (*list)->head;
 
@@ -800,19 +809,22 @@ signed char Map_create(
 	const unsigned long long capacity,
 	signed char* const succeeded)
 {
-	if (map == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `map` is invalid (null)!");
-		return 0;
-	}
-
 	if (succeeded == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `succeeded` is invalid (null)!");
 		return 0;
 	}
+
+	if (map == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `map` is invalid (null)!");
+		*succeeded = 0;
+		return 0;
+	}
+
+	*succeeded = 0;
 
 	W_RTM_malloc((const void** const)map, sizeof(struct Map), succeeded,
 	{
@@ -820,7 +832,7 @@ signed char Map_create(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to allocate memory for a map!");
 		// *succeeded = 0;
 		return 1;
@@ -835,7 +847,7 @@ signed char Map_create(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to allocate memory block for map's nodes!");
 		// *succeeded = 0;
 		return 1;
@@ -853,24 +865,26 @@ signed char Map_destroy(
 	const struct Map* const * const map,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (map == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `map` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*map == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `map`'s deref is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -887,7 +901,6 @@ signed char Map_destroy(
 		{
 			const struct Map_Node* current = node;
 			node = node->next;
-			// free((void*)current);
 
 			W_RTM_free((const void* const * const)(&current), succeeded,
 			{
@@ -895,7 +908,7 @@ signed char Map_destroy(
 				return 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"failed to deallocate map's node!");
 				// *succeeded = 0;
 				return 1;
@@ -910,7 +923,7 @@ signed char Map_destroy(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to deallocate map's nodes!");
 		// *succeeded = 0;
 		return 1;
@@ -923,7 +936,7 @@ signed char Map_destroy(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to deallocate map!");
 		// *succeeded = 0;
 		return 1;
@@ -941,38 +954,42 @@ signed char Map_set(
 	void* value,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (map == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `map` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*map == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `map`'s deref is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (key == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `key` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (value == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `value` is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -1080,42 +1097,47 @@ signed char Map_get(
 	void** const value,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (map == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `map` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*map == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `map`'s deref is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (key == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `key` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (value == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `value` is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	*succeeded = 0;
+
 	*value = NULL;
 
 	struct Hash64 hash = {0};
@@ -1167,19 +1189,22 @@ static signed char Hash64_hash(
 	const unsigned long long length,
 	signed char* const succeeded)
 {
-	if (hash == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `hash` is invalid (null)!");
-		return 0;
-	}
-
 	if (succeeded == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `succeeded` is invalid (null)!");
 		return 0;
 	}
+
+	if (hash == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `hash` is invalid (null)!");
+		*succeeded = 0;
+		return 0;
+	}
+
+	*succeeded = 0;
 
 	unsigned long long state = 0;
 

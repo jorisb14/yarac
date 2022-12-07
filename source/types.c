@@ -28,31 +28,35 @@ signed char Token_create(
 	const struct Location* const location,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
+		return 0;
+	}
+
 	if (token == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `token` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*token != NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `token`'s deref was not NULL!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (location == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `location` is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -66,7 +70,7 @@ signed char Token_create(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to allocate memory for a token!");
 		// *succeeded = 0;
 		return 1;
@@ -84,24 +88,27 @@ signed char Token_destroy(
 	const struct Token* const * const token,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
+		return 0;
+	}
+
 	if (token == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `token` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*token == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `token`'s deref is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -117,7 +124,7 @@ signed char Token_destroy(
 				return 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"failed to deallocate memory for a token's source!");
 				// *succeeded = 0;
 				return 1;
@@ -136,7 +143,7 @@ signed char Token_destroy(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to deallocate memory for a token's source!");
 		// *succeeded = 0;
 		return 1;
@@ -149,7 +156,7 @@ signed char Token_destroy(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to deallocate memory for a token!");
 		// *succeeded = 0;
 		return 1;
@@ -165,24 +172,26 @@ signed char Block_create(
 	const signed long long kind,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (block == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `block` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*block != NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `block`'s deref was not NULL!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -196,7 +205,7 @@ signed char Block_create(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to allocate memory for a block!");
 		// *succeeded = 0;
 		return 1;
@@ -212,24 +221,26 @@ signed char Block_destroy(
 	const struct Block* const * const block,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (block == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `block` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*block == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `block`'s deref is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -261,7 +272,7 @@ signed char Block_destroy(
 							return 0;
 						},
 						{
-							W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+							W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 								"failed to deallocate memory for an if condition block!");
 							// *succeeded = 0;
 							return 1;
@@ -275,7 +286,7 @@ signed char Block_destroy(
 						return 0;
 					},
 					{
-						W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+						W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 							"failed to deallocate memory for a if condition blocks list!");
 						// *succeeded = 0;
 						return 1;
@@ -292,7 +303,7 @@ signed char Block_destroy(
 							return 0;
 						},
 						{
-							W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+							W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 								"failed to deallocate memory for an if body block!");
 							// *succeeded = 0;
 							return 1;
@@ -306,7 +317,7 @@ signed char Block_destroy(
 						return 0;
 					},
 					{
-						W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+						W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 							"failed to deallocate memory for a if body blocks list!");
 						// *succeeded = 0;
 						return 1;
@@ -326,7 +337,7 @@ signed char Block_destroy(
 							return 0;
 						},
 						{
-							W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+							W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 								"failed to deallocate memory for a while condition block!");
 							// *succeeded = 0;
 							return 1;
@@ -340,7 +351,7 @@ signed char Block_destroy(
 						return 0;
 					},
 					{
-						W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+						W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 							"failed to deallocate memory for a while condition blocks list!");
 						// *succeeded = 0;
 						return 1;
@@ -357,7 +368,7 @@ signed char Block_destroy(
 							return 0;
 						},
 						{
-							W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+							W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 								"failed to deallocate memory for a while body block!");
 							// *succeeded = 0;
 							return 1;
@@ -371,7 +382,7 @@ signed char Block_destroy(
 						return 0;
 					},
 					{
-						W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+						W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 							"failed to deallocate memory for a while body blocks list!");
 						// *succeeded = 0;
 						return 1;
@@ -391,7 +402,7 @@ signed char Block_destroy(
 							return 0;
 						},
 						{
-							W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+							W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 								"failed to deallocate memory for a with identifiers block!");
 							// *succeeded = 0;
 							return 1;
@@ -405,7 +416,7 @@ signed char Block_destroy(
 						return 0;
 					},
 					{
-						W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+						W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 							"failed to deallocate memory for a with identifiers blocks list!");
 						// *succeeded = 0;
 						return 1;
@@ -422,7 +433,7 @@ signed char Block_destroy(
 							return 0;
 						},
 						{
-							W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+							W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 								"failed to deallocate memory for a with body block!");
 							// *succeeded = 0;
 							return 1;
@@ -436,7 +447,7 @@ signed char Block_destroy(
 						return 0;
 					},
 					{
-						W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+						W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 							"failed to deallocate memory for a with body blocks list!");
 						// *succeeded = 0;
 						return 1;
@@ -452,7 +463,7 @@ signed char Block_destroy(
 						return 0;
 					},
 					{
-						W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+						W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 							"failed to deallocate memory for a procedure identifier block!");
 						// *succeeded = 0;
 						return 1;
@@ -465,7 +476,7 @@ signed char Block_destroy(
 						return 0;
 					},
 					{
-						W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+						W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 							"failed to deallocate memory for a procedure in types tokens list!");
 						// *succeeded = 0;
 						return 1;
@@ -478,7 +489,7 @@ signed char Block_destroy(
 						return 0;
 					},
 					{
-						W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+						W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 							"failed to deallocate memory for a procedure out types tokens list!");
 						// *succeeded = 0;
 						return 1;
@@ -495,7 +506,7 @@ signed char Block_destroy(
 							return 0;
 						},
 						{
-							W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+							W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 								"failed to deallocate memory for a procedure body block!");
 							// *succeeded = 0;
 							return 1;
@@ -509,7 +520,7 @@ signed char Block_destroy(
 						return 0;
 					},
 					{
-						W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+						W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 							"failed to deallocate memory for a procedure body blocks list!");
 						// *succeeded = 0;
 						return 1;
@@ -525,7 +536,7 @@ signed char Block_destroy(
 						return 0;
 					},
 					{
-						W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+						W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 							"failed to deallocate memory for a module identifier block!");
 						// *succeeded = 0;
 						return 1;
@@ -542,7 +553,7 @@ signed char Block_destroy(
 							return 0;
 						},
 						{
-							W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+							W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 								"failed to deallocate memory for a module body block!");
 							// *succeeded = 0;
 							return 1;
@@ -556,7 +567,7 @@ signed char Block_destroy(
 						return 0;
 					},
 					{
-						W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+						W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 							"failed to deallocate memory for a module body blocks list!");
 						// *succeeded = 0;
 						return 1;
@@ -582,7 +593,7 @@ signed char Block_destroy(
 					return 0;
 				},
 				{
-					W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+					W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 						"failed to deallocate memory for an import identifiers block!");
 					// *succeeded = 0;
 					return 1;
@@ -596,7 +607,7 @@ signed char Block_destroy(
 				return 0;
 			},
 			{
-				W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 					"failed to deallocate memory for an import identifiers blocks list!");
 				// *succeeded = 0;
 				return 1;
@@ -615,7 +626,7 @@ signed char Block_destroy(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to deallocate memory for a block!");
 		// *succeeded = 0;
 		return 1;
@@ -630,24 +641,26 @@ signed char Frame_create(
 	struct Frame** const frame,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (frame == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `frame` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*frame != NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `frame`'s deref was not NULL!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -661,7 +674,7 @@ signed char Frame_create(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to allocate memory for a frame!");
 		// *succeeded = 0;
 		return 1;
@@ -674,7 +687,7 @@ signed char Frame_create(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to create a gmm list for frame's blocks!");
 		// *succeeded = 0;
 		return 1;
@@ -689,24 +702,26 @@ signed char Frame_destroy(
 	const struct Frame* const * const frame,
 	signed char* const succeeded)
 {
+	if (succeeded == NULL)
+	{
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"provided function parameter `succeeded` is invalid (null)!");
+		return 0;
+	}
+
 	if (frame == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `frame` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
 	if (*frame == NULL)
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"provided function parameter `frame`'s deref is invalid (null)!");
-		return 0;
-	}
-
-	if (succeeded == NULL)
-	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
-			"provided function parameter `succeeded` is invalid (null)!");
+		*succeeded = 0;
 		return 0;
 	}
 
@@ -722,7 +737,7 @@ signed char Frame_destroy(
 			return 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 				"failed to deallocate memory for a block!");
 			// *succeeded = 0;
 			return 1;
@@ -736,7 +751,7 @@ signed char Frame_destroy(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to deallocate memory for a frame body blocks list!");
 		// *succeeded = 0;
 		return 1;
@@ -749,7 +764,7 @@ signed char Frame_destroy(
 		return 0;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to deallocate memory for a frame!");
 		// *succeeded = 0;
 		return 1;

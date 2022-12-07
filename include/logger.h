@@ -16,8 +16,6 @@
 
 #include <location.h>
 
-#include <stdlib.h>
-
 /**
  * @addtogroup logger
  * 

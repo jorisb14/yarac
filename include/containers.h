@@ -48,7 +48,7 @@ signed char Vector_create(
 	{ \
 		if (!Vector_create((_inmacro_vector), (_inmacro_capacity), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Vector_create(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -87,7 +87,7 @@ signed char Vector_destroy(
 	{ \
 		if (!Vector_destroy((_inmacro_vector), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Vector_destroy(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -127,7 +127,7 @@ signed char Vector_getAt(
 	{ \
 		if (!Vector_getAt((_inmacro_vector), (_inmacro_index), (_inmacro_data), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Vector_getAt(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -166,7 +166,7 @@ signed char Vector_setAt(
 	{ \
 		if (!Vector_setAt((_inmacro_vector), (_inmacro_index), (_inmacro_data), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Vector_setAt(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -204,7 +204,7 @@ signed char Vector_pushLast(
 	{ \
 		if (!Vector_pushLast((_inmacro_vector), (_inmacro_data), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Vector_pushLast(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -261,7 +261,7 @@ signed char List_create(
 	{ \
 		if (!List_create((_inmacro_list), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function List_create(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -300,7 +300,7 @@ signed char List_destroy(
 	{ \
 		if (!List_destroy((_inmacro_list), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function List_destroy(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -338,7 +338,7 @@ signed char List_pushFirst(
 	{ \
 		if (!List_pushFirst((_inmacro_list), (_inmacro_data), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function List_pushFirst(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -376,7 +376,7 @@ signed char List_pushLast(
 	{ \
 		if (!List_pushLast((_inmacro_list), (_inmacro_data), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function List_pushLast(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -415,7 +415,7 @@ signed char List_popFirst(
 	{ \
 		if (!List_popFirst((_inmacro_list), (_inmacro_popped), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function List_popFirst(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -454,7 +454,7 @@ signed char List_popLast(
 	{ \
 		if (!List_popLast((_inmacro_list), (_inmacro_popped), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function List_popLast(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -493,7 +493,7 @@ signed char List_peekFirst(
 	{ \
 		if (!List_peekFirst((_inmacro_list), (_inmacro_peeked), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function List_peekFirst(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -571,7 +571,7 @@ signed char Map_create(
 	{ \
 		if (!Map_create((_inmacro_map), (_inmacro_capacity), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Map_create(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -610,7 +610,7 @@ signed char Map_destroy(
 	{ \
 		if (!Map_destroy((_inmacro_map), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Map_destroy(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -651,7 +651,7 @@ signed char Map_set(
 	{ \
 		if (!Map_set((_inmacro_map), (_inmacro_key), (_inmacro_length), (_inmacro_value), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Map_set(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -692,7 +692,7 @@ signed char Map_get(
 	{ \
 		if (!Map_get((_inmacro_map), (_inmacro_key), (_inmacro_length), (_inmacro_value), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Map_get(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \

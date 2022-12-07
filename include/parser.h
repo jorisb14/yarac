@@ -43,7 +43,7 @@ signed char Parser_parseFrame(
 	{ \
 		if (!Parser_parseFrame((_inmacro_frame), (_inmacro_tokens), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Parser_parseFrame(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -80,7 +80,7 @@ signed char Parser_parseFrame(
 	{ \
 		if (!Parser_parseFrame((_inmacro_tokens), (_inmacro_frame), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function Parser_parseFrame(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \

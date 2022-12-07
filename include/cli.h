@@ -50,7 +50,7 @@ signed char CLI_Args_create(
 	{ \
 		if (!CLI_Args_create((_inmacro_args), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function CLI_Args_create(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -85,7 +85,7 @@ signed char CLI_Args_destroy(
 	{ \
 		if (!CLI_Args_destroy((_inmacro_args), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function CLI_Args_destroy(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \
@@ -123,7 +123,7 @@ signed char CLI_tryParseArgs(
 	{ \
 		if (!CLI_tryParseArgs((_inmacro_argc), (_inmacro_argv), (_inmacro_args), (_inmacro_succeeded))) \
 		{ \
-			W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s", \
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s", \
 				"function CLI_tryParseArgs(...) returned with internal failure!"); \
 			_inmacro_internalFailCallback \
 		} \

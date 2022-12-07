@@ -68,7 +68,7 @@ UT_ADD_TEST(keywords,
 		return 1;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to create tokens vector!");
 		// succeeded = 0;
 		return 1;
@@ -81,7 +81,7 @@ UT_ADD_TEST(keywords,
 		return 1;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION,
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION,
 			"failed to lex file: %s!",
 			source);
 		// succeeded = 0;
@@ -133,7 +133,7 @@ UT_ADD_TEST(keywords,
 			succeeded = 0;
 		},
 		{
-			W_Logger_log(LOG_KIND_ERROR, NO_LOCATION,
+			W_Logger_log(LOG_KIND_ERROR, INTERNAL_LOCATION,
 				"failed to destroy a token!",
 				(const char*)source);
 			// succeeded = 0;
@@ -147,7 +147,7 @@ UT_ADD_TEST(keywords,
 		return 1;
 	},
 	{
-		W_Logger_log(LOG_KIND_INTERNAL, NO_LOCATION, "%s",
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
 			"failed to destroy vector container!");
 		// succeeded = 0;
 		return 1;
