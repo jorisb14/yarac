@@ -74,7 +74,7 @@ void Token_print(
 	*succeeded = 0;
 
 	// NOTE: this `stringifiedTokensKindsCount` define must be changed when modifying the `stringifiedTokensKinds` set!
-	#define stringifiedTokensKindsCount ((unsigned int)94)
+	#define stringifiedTokensKindsCount ((unsigned int)98)
 	static const char* stringifiedTokensKinds[] =
 	{
 		[TOKEN_KIND_INVALID] = "invalid",
@@ -111,11 +111,15 @@ void Token_print(
 		[TOKEN_KIND_KEYWORD_IN] = "keyword_in",
 		[TOKEN_KIND_KEYWORD_OUT] = "keyword_out",
 		[TOKEN_KIND_KEYWORD_AS] = "keyword_as",
-		[TOKEN_KIND_KEYWORD_RETURN] = "keyword_return",
 		[TOKEN_KIND_KEYWORD_IF] = "keyword_if",
+		[TOKEN_KIND_KEYWORD_SWITCH] = "keyword_switch",
+		[TOKEN_KIND_KEYWORD_CASE] = "keyword_case",
+		[TOKEN_KIND_KEYWORD_DEFAULT] = "keyword_default",
 		[TOKEN_KIND_KEYWORD_WHILE] = "keyword_while",
 		[TOKEN_KIND_KEYWORD_WITH] = "keyword_with",
 		[TOKEN_KIND_KEYWORD_DO] = "keyword_do",
+		[TOKEN_KIND_KEYWORD_BREAK] = "keyword_break",
+		[TOKEN_KIND_KEYWORD_RETURN] = "keyword_return",
 		[TOKEN_KIND_KEYWORD_END] = "keyword_end",
 
 		[TOKEN_KIND_INTRINSIC_ADD] = "intrinsic_add",

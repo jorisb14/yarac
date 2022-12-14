@@ -80,7 +80,7 @@
 		"description": "Yaralang main snippet",
 		"body": [
 			"",
-			"export procedure main in i64 p64 out i64  do",
+			"export procedure main in i64 p64 out i64 do",
 			"\t# body",
 			"end",
 			""
@@ -93,6 +93,19 @@
 			"",
 			"if $condition do",
 			"\t# body",
+			"end",
+			""
+		]
+	},
+	"switch": {
+		"prefix": "switch",
+		"description": "Yaralang switch snippet",
+		"body": [
+			"",
+			"switch $variable do",
+			"\tcase $constant do",
+			"\t\t# body",
+			"\tbreak end",
 			"end",
 			""
 		]

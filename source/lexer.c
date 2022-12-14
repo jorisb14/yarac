@@ -1210,7 +1210,7 @@ static signed char Lexer_tryParseKeyword(
 	*succeeded = 0;
 
 	// NOTE: this `keywordTokenKindsCount` define must be changed when modifying the `keywordTokenKinds` set!
-	#define keywordTokenKindsCount ((unsigned int)36)
+	#define keywordTokenKindsCount ((unsigned int)40)
 	static const struct Lexer_TokenTemplate keywordTokenKinds[] =
 	{
 		[TOKEN_KIND_KEYWORD_I8] = { "i8", 2 },
@@ -1243,11 +1243,15 @@ static signed char Lexer_tryParseKeyword(
 		[TOKEN_KIND_KEYWORD_IN] = { "in", 2 },
 		[TOKEN_KIND_KEYWORD_OUT] = { "out", 3 },
 		[TOKEN_KIND_KEYWORD_AS] = { "as", 2 },
-		[TOKEN_KIND_KEYWORD_RETURN] = { "return", 6 },
 		[TOKEN_KIND_KEYWORD_IF] = { "if", 2 },
+		[TOKEN_KIND_KEYWORD_SWITCH] = { "switch", 6 },
+		[TOKEN_KIND_KEYWORD_CASE] = { "case", 4 },
+		[TOKEN_KIND_KEYWORD_DEFAULT] = { "default", 7 },
 		[TOKEN_KIND_KEYWORD_WHILE] = { "while", 5 },
 		[TOKEN_KIND_KEYWORD_WITH] = { "with", 4 },
 		[TOKEN_KIND_KEYWORD_DO] = { "do", 2 },
+		[TOKEN_KIND_KEYWORD_BREAK] = { "break", 5 },
+		[TOKEN_KIND_KEYWORD_RETURN] = { "return", 6 },
 		[TOKEN_KIND_KEYWORD_END] = { "end", 3 }
 	};
 	static_assert((TOKEN_KIND_LAST_KEYWORD - TOKEN_KIND_FIRST_KEYWORD + 1) == keywordTokenKindsCount,

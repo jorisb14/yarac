@@ -197,7 +197,9 @@ static signed char Yarac_main(
 				return 0;
 			},
 			{
-				// TODO: log!
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION,
+					"failed to get item from vector at index `%llu`!",
+					index);
 				// *succeeded = 0;
 				return 1;
 			},
@@ -218,7 +220,9 @@ local_tokens_cleanup:
 				return 0;
 			},
 			{
-				// TODO: log!
+				W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION,
+					"failed to get item from vector at index `%llu`!",
+					index);
 				// *succeeded = 0;
 				return 1;
 			},

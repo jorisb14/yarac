@@ -1003,7 +1003,9 @@ signed char Map_set(
 		return 0;
 	},
 	{
-		// TODO: log!
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION,
+			"failed to hash provided key: `%s`!",
+			key);
 		// *succeeded = 0;
 		return 1;
 	},
@@ -1019,7 +1021,8 @@ signed char Map_set(
 			return 0;
 		},
 		{
-			// TODO: log!
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+				"failed to reallocate memory for a map!");
 			// *succeeded = 0;
 			return 1;
 		},
@@ -1054,7 +1057,8 @@ signed char Map_set(
 			return 0;
 		},
 		{
-			// TODO: log!
+			W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+				"failed to allocate memory block for list's node!");
 			// *succeeded = 0;
 			return 1;
 		},
@@ -1076,7 +1080,8 @@ signed char Map_set(
 		return 0;
 	},
 	{
-		// TODO: log!
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION, "%s",
+			"failed to allocate memory block for list's node!");
 		// *succeeded = 0;
 		return 1;
 	},
@@ -1148,7 +1153,9 @@ signed char Map_get(
 		return 0;
 	},
 	{
-		// TODO: log!
+		W_Logger_log(LOG_KIND_INTERNAL, INTERNAL_LOCATION,
+			"failed to hash provided key: `%s`!",
+			key);
 		// *succeeded = 0;
 		return 1;
 	},

@@ -3,8 +3,7 @@
 bin_PROGRAMS = yarac
 
 # Yarac sources
-yarac_SOURCES =
-yarac_SOURCES += \
+yarac_SOURCES = \
 	$(top_srcdir)/include/debug/utils.h \
 	$(top_srcdir)/include/cli.h \
 	$(top_srcdir)/include/containers.h \
@@ -26,21 +25,19 @@ yarac_SOURCES += \
 	$(top_srcdir)/source/types.c \
 	$(top_srcdir)/source/main.c
 
-# TODO: separate flags that should never be changed and user-defined ones!
-
 # Yarac compiler flags
-yarac_CFLAGS = \
+AM_CFLAGS = \
 	-std=gnu11 \
 	-Wall \
 	-Wextra \
 	-Wpedantic \
 	-Werror \
-	-Wshadow \
-	-O0 -g -DYARAC_DEBUG
+	-Wshadow
 
 # Yarac C/C++ preprocessor flags
 yarac_CPPFLAGS = \
 	-I$(top_srcdir)/include
+	-I$(top_srcdir)/build/include
 
 # Yarac linker flags
 yarac_LDFLAGS =

@@ -9,8 +9,10 @@ AC_PREREQ([2.71])
 AC_CONFIG_SRCDIR([./source/main.c])
 
 # Tests directory (with sanity check file)
-# NOTE: not using autotools for tests for now!
-# AC_CONFIG_TESTDIR([./tests/test.c])
+# NOTE: not using autotools for the tests!
+#       There is a script in scripts directory
+#       that will run the tests suite.
+# AC_CONFIG_TESTDIR([./tests/test.c]) # NOTE: Not needed...
 
 # Condifguration header for the project
 # NOTE: Haven't solved the issue with config.h file yet!
@@ -25,8 +27,10 @@ AM_INIT_AUTOMAKE([1.9 -Wall -Werror foreign subdir-objects])
 # Setup output targets
 AC_CONFIG_FILES([Makefile])
 
-# Defaulting CFLAGS to nothing (they are set in the Makefile.am)
-${CFLAGS=""}
+# Defaulting CFLAGS to debug configuration
+# TODO: need to make flags for building debug and release with GCC and CLANG
+# Clang does not have -O0 flag which is not handled here!
+${CFLAGS="-O0 -g -DYARAC_DEBUG=1"}
 
 # Find C compiler
 AC_PROG_CC([gcc cc cl]) # NOTE: cl might not work - haven't tested yet
@@ -83,6 +87,7 @@ echo "target............... ${with_target}"
 echo "AR_FLAGS............. ${AR_FLAGS}"
 echo "CC................... ${CC}"
 echo "CFLAGS............... ${CFLAGS}"
+echo "CPPFLAGS............. ${CPPFLAGS}"
 echo "HOST................. ${HOST}"
 echo "HOSTNAME............. ${HOSTNAME}"
 echo "LDFLAGS.............. ${LDFLAGS}"
